@@ -4,12 +4,13 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'spec_helper'
 require 'rspec/rails'
-
+require "capybara/rspec"
+require "capybara/rails"
 # Below is the thing you need to get selenium to work with crhome
 
-# Capybara.register_driver :selenium do |app|
-#   Capybara::Selenium::Driver.new(app, :browser => :chrome)
-# end
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
 
 
 ActiveRecord::Migration.maintain_test_schema!
