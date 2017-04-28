@@ -1,3 +1,4 @@
 dependencies:
   pre:
     - 'echo -e "test:\n  secret_key_base: abcd1234" > config/secrets.yml'
+    - curl -s https://raw.githubusercontent.com/chronogolf/circleci-google-chrome/master/use_chrome_stable_version.sh | bash
