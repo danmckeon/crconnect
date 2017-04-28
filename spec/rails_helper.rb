@@ -7,9 +7,9 @@ require 'rspec/rails'
 
 # Below is the thing you need to get selenium to work with crhome
 
-Capybara.register_driver :selenium do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :chrome)
-end
+# Capybara.register_driver :selenium do |app|
+#   Capybara::Selenium::Driver.new(app, :browser => :chrome)
+# end
 
 
 ActiveRecord::Migration.maintain_test_schema!
