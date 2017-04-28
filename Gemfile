@@ -58,7 +58,7 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'database_cleaner'
-  gem "chromedriver-helper", "1.0.0"
+  gem 'chromedriver-helper'
   gem 'simplecov'
 end
 
