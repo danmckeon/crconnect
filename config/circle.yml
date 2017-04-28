@@ -1,0 +1,3 @@
+dependencies:
+  pre:
+    - 'echo -e "test:\n  secret_key_base: abcd1234" > config/secrets.yml'
