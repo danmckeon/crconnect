@@ -1,0 +1,2 @@
+class TrialsController < ApplicationController
+end
