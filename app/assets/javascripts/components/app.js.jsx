@@ -8,7 +8,9 @@ class App extends React.Component {
   render () {
     return(
       <div className="app">
+        {/* need to add logic for conditional display */}
         <Search />
+        <Results />
       </div>
     )
   }
