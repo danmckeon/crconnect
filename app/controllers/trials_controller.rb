@@ -12,7 +12,7 @@ class TrialsController < ApplicationController
 
   private
   def trial_params
-    params.permit(:cancerSubtype, :cancerStage, :cancerStatus, :geneticMarkers, :chemotherapy, :radiation, :age)
+    params.permit(:cancerSubType, :cancerStage, :cancerStatus, :geneticMarkers, :chemotherapy, :radiation, :age)
   end
 
   def parse_params
@@ -50,7 +50,7 @@ class TrialsController < ApplicationController
     # when "status_refractory"
     #   query_params[:status_refractory] = "include"
     # end
-    # 
+    #
     # case trial_params[:geneticMarkers] # RE-DO THIS
     # when "marker_alk_oncogene"
     #   query_params[:marker_alk_oncogene] = "include"

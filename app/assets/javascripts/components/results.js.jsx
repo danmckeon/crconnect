@@ -1,15 +1,7 @@
 class Results extends React.Component {
   componentWillMount() {
-    const queryData = {
-      cancerType: "Lung",
-      cancerSubtype: "type_lung_sclc",
-      cancerStage: "stage_i",
-      cancerStatus: "status_newly_diagnosed",
-      geneticMarkers: "none",
-      chemotherapy: "yes",
-      radiation: "no",
-      age: "27",
-    }  // this.props.query
+    const queryData = this.props.query;
+    console.log(queryData);
     $.ajax({
       url: "http://localhost:3000/trials",
       data: queryData,
