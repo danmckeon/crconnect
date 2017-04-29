@@ -1,11 +1,30 @@
 class SearchForm extends React.Component {
+
+
+  jsonifyQueryString(queryString){
+    let pairs = queryString.split('&');
+    let result = {};
+    pairs.forEach(function(pair) {
+      pair = pair.split('=');
+      result[pair[0]] = decodeURIComponent(pair[1] || '');
+    });
+    return result;
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    let queryString = $(e.target).serialize();
+    let formData = this.jsonifyQueryString(queryString)
+    return formData
+  }
+  
   render() {
     return (
       <div className="row">
         <div className="col-md-3">
         </div>
         <div className="search-form-container col-md-6">
-          <form className="search-form form-group">
+          <form className="search-form form-group" onSubmit={(e) => this.onSubmit(e)}>
             <div className="row">
               <label htmlFor="cancerType">Cancer Type</label>
               <select name="cancerType" className="form-control">
