@@ -7,7 +7,7 @@ class TrialsController < ApplicationController
     @trials = Trial.where(parse_params[:positives]).where.not(parse_params[:negatives])
     p "="*100
     p "#{@trials.length} clinical trials found"
-
+    p @trials[-1]
   end
 
   private
@@ -48,6 +48,13 @@ class TrialsController < ApplicationController
       query_params[:negatives][:treatment_chemo_systemic] = "exclude"
     when "no"
       query_params[:negatives][:treatment_chemo_systemic] = "require"
+    end
+
+    case trial_params[:radiation]
+    when "yes"
+      query_params[:negatives][:treatment_radiation] = "exclude"
+    when "no"
+      query_params[:negatives][:treatment_radiation] = "require"
     end
 
     # case trial_params[:cancerStatus]
