@@ -3,7 +3,7 @@ class TrialsList extends React.Component {
     return(
       <div>
         <h2>This is where the Trials List will render Trial components header goes </h2>
-        <Trial />
+        <Trial proof={this.props.example} />
       </div>
     )
   }

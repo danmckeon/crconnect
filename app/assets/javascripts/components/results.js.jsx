@@ -3,7 +3,7 @@ class Results extends React.Component {
     return(
       <div className="results-layout container">
         <ResultsHeader />
-        <TrialsList />
+        <TrialsList example="Cancer Trial info"/>
       </div>
     )
   }
