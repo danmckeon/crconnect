@@ -1,13 +1,8 @@
 class TrialsController < ApplicationController
   def index
-    p "="*100
-    p parse_params
-    p "="*100
-
     @trials = Trial.where(parse_params[:positives]).where.not(parse_params[:negatives])
-    p "="*100
-    p "#{@trials.length} clinical trials found"
-    p @trials[-1]
+    @trials = age_filter(@trials, trial_params[:age])
+    @trials.to_json
   end
 
   private
@@ -76,11 +71,15 @@ class TrialsController < ApplicationController
     # when "marker_kras_mutation"
     #   query_params[:marker_kras_mutation] = "include"
     # end
-    #
-    p "*************************************"
-    p query_params
-    p "*************************************"
-
     query_params
+  end
+
+  def age_filter(trials, user_age)
+    trials.select do |trial|
+      min = trial[:age_min].to_i
+      max = trial[:age_max].to_i
+      user = user_age.to_i
+      min < user && user < max
+    end
   end
 end
