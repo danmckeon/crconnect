@@ -5,6 +5,8 @@ class Results extends React.Component {
     $.ajax({
       url: "http://localhost:3000/trials",
       data: queryData,
+    }).done((response) => {
+      console.log(response)
     })
   };
   render () {

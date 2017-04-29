@@ -18,15 +18,15 @@ class TrialsController < ApplicationController
   def parse_params
     query_params = {}
 
-    case trial_params[:cancerSubtype]
+    case trial_params[:cancerSubType]
     when "type_lung_nsclc_adeno"
-      query_params[:"type_lung_nsclc_adeno"] = "include"
+      query_params[:type_lung_nsclc_adeno] = "include"
     when "type_lung_nsclc_large"
-      query_params[:"type_lung_nsclc_large"] = "include"
+      query_params[:type_lung_nsclc_large] = "include"
     when "type_lung_nsclc_squamous"
-      query_params[:"type_lung_nsclc_squamous"] = "include"
+      query_params[:type_lung_nsclc_squamous] = "include"
     when "type_lung_sclc"
-      query_params[:"type_lung_sclc"] = "include"
+      query_params[:type_lung_sclc] = "include"
     end
 
     case trial_params[:cancerStage]
@@ -67,6 +67,5 @@ class TrialsController < ApplicationController
     # end
 
     query_params
-    # add logic here for turning trial params into what needs to be passed in a .where in ActiveRecord
   end
 end
