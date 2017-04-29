@@ -3,7 +3,7 @@ class Search extends React.Component {
 
 
   onSubmit(query) {
-    return this.props.onSubmit(query)
+    this.props.onSubmit(query)
   }
 
   render () {

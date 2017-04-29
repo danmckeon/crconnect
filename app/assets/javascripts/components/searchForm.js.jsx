@@ -14,10 +14,10 @@ class SearchForm extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     let queryString = $(e.target).serialize();
-    let formData = this.jsonifyQueryString(queryString)
-    return formData
+    let query = this.jsonifyQueryString(queryString)
+    this.props.onSubmit(query);
   }
-  
+
   render() {
     return (
       <div className="row">
