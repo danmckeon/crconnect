@@ -49,7 +49,7 @@ class SearchForm extends React.Component {
               </select>
               <label htmlFor="age">Age</label>
               <input type="text" name="age" className="form-control" />
-              <input type="submit" className="form-control" />
+              <input type="submit" id="search-query-submit" className="form-control" />
             </div>
           </form>
         </div>
