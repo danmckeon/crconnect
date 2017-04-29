@@ -15,6 +15,7 @@ class App extends React.Component {
   render () {
     return(
       <div className="app">
+        <NavBar />
         {(this.state.query) ? <Results /> : <Search onSubmit={(query) => this.submitHandler(query)} />}
       </div>
     )
