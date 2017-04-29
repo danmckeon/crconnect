@@ -2,7 +2,7 @@ class TrialsController < ApplicationController
   def index
     p params
     p trial_params
-    @trial = Trial.where(type_lung_nsclc_adeno: "include")
+    @trial = Trial.where(query_params)
   end
 
   private
@@ -12,8 +12,16 @@ class TrialsController < ApplicationController
 
   def parse_params
     query_params = {}
-    return query_params[:"type_lung_nsclc_adeno"] = "include" if trial_params[:cancerSubtype] == "type_lung_nsclc_adeno"
-    
+    if trial_params[:cancerSubtype] == "type_lung_nsclc_adeno"
+      query_params[:"type_lung_nsclc_adeno"] = "include"
+    elsif trial_params[:cancerSubtype] == "type_lung_nsclc_large"
+      query_params[:"type_lung_nsclc_large"] = "include"
+    elsif trial_params[:cancerSubtype] == "type_lung_nsclc_squamous"
+      query_params[:"type_lung_nsclc_squamous"] = "include"
+    else
+      query_params[:"type_lung_sclc"] = "include"
+    end
+
     # add logic here for turning trial params into what needs to be passed in a .where in ActiveRecord
   end
 end
