@@ -15,10 +15,7 @@ class App extends React.Component {
   render () {
     return(
       <div className="app">
-        {/* need to add logic for conditional display */}
-        <p>{JSON.stringify(this.state.query)}</p>
-        <Search onSubmit={(query) => this.submitHandler(query)} />
-        <Results />
+        {(this.state.query) ? <Results /> : <Search onSubmit={(query) => this.submitHandler(query)} />}
       </div>
     )
   }
