@@ -23,7 +23,7 @@ class App extends React.Component {
     return(
       <div className="app">
         <NavBar onClick={(e) => this.clickHandler(e)} />
-        {(this.state.query) ? <Results /> : <Search onSubmit={(query) => this.submitHandler(query)} />}
+        {(this.state.query) ? <Results query={this.state.query}/> : <Search onSubmit={(query) => this.submitHandler(query)} />}
       </div>
     )
   }

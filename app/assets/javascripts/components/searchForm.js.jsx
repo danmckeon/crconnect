@@ -44,7 +44,8 @@ class SearchForm extends React.Component {
                 <option value="stage_iii">Stage III</option>
                 <option value="stage_iv">Stage IV</option>
               </select>
-              <label htmlFor="cancerStatus">Status</label>
+              {/* Commented out a couple fields for MVP. We can re-implement later */}
+              {/* <label htmlFor="cancerStatus">Status</label>
               <select name="cancerStatus" className="form-control">
                 <option value="status_newly_diagnosed">Newly Diagnosed</option>
                 <option value="status_relapse">Relapse</option>
@@ -56,13 +57,13 @@ class SearchForm extends React.Component {
                 <option value="marker_alk_oncogene">ALK Oncogene</option>
                 <option value="marker_egfr_mutation">EGFR Mutation</option>
                 <option value="marker_kras_mutation">KRAS Mutation</option>
-              </select>
-              <label htmlFor="chemotherapy">Chemotherapy Treatment Administered</label>
+              </select> */}
+              <label htmlFor="chemotherapy">Is chemotherapy your main form of treatment?</label>
               <select name="chemotherapy" className="form-control">
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
               </select>
-              <label htmlFor="radiation">Radiation Treatment Administered</label>
+              <label htmlFor="radiation">Have you received radiation as a treatment?</label>
               <select name="radiation" className="form-control">
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
