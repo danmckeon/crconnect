@@ -1,8 +1,10 @@
 class TrialsController < ApplicationController
   def index
-    @trials = Trial.where(parse_params[:positives]).where.not(parse_params[:negatives])
-    @trials = age_filter(@trials, trial_params[:age])
-    @trials.to_json
+    trials = Trial.where(parse_params[:positives]).where.not(parse_params[:negatives])
+    trials = age_filter(trials, trial_params[:age])
+    respond_to do |format|
+      format.json { render json: trials }
+    end
   end
 
   private

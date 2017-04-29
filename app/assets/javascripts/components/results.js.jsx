@@ -1,12 +1,17 @@
 class Results extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      trials: null,
+    }
+  }
   componentWillMount() {
     const queryData = this.props.query;
-    console.log(queryData);
     $.ajax({
       url: "http://localhost:3000/trials",
       data: queryData,
     }).done((response) => {
-      console.log(response)
+      this.setState({trials: response});
     })
   };
   render () {
