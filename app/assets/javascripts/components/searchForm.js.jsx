@@ -33,16 +33,17 @@ class SearchForm extends React.Component {
               </select>
               <label htmlFor="geneticMarkers">Genetic Markers</label>
               <select name="geneticMarkers" className="form-control">
+                <option value="none"></option>
                 <option value="marker_alk_oncogene">ALK Oncogene</option>
                 <option value="marker_egfr_mutation">EGFR Mutation</option>
                 <option value="marker_kras_mutation">KRAS Mutation</option>
               </select>
-              <label htmlFor="chemotherapy">Chemotherapy</label>
+              <label htmlFor="chemotherapy">Chemotherapy Treatment Administered</label>
               <select name="chemotherapy" className="form-control">
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
               </select>
-              <label htmlFor="radiation">Radiation</label>
+              <label htmlFor="radiation">Radiation Treatment Administered</label>
               <select name="radiation" className="form-control">
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
