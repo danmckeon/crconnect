@@ -2,15 +2,28 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      mode: "search",
+      query: null,
     }
   }
+
+  clickHandler(e) {
+    this.setState({
+      query: null,
+    })
+  }
+
+  submitHandler(query) {
+    this.setState({
+      query: query,
+    })
+  }
+
+
   render () {
     return(
       <div className="app">
-        {/* need to add logic for conditional display */}
-        <Search />
-        <Results />
+        <NavBar onClick={(e) => this.clickHandler(e)} />
+        {(this.state.query) ? <Results /> : <Search onSubmit={(query) => this.submitHandler(query)} />}
       </div>
     )
   }
