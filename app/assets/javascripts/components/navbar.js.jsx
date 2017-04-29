@@ -1,5 +1,8 @@
 class NavBar extends React.Component {
-
+  onClick(e) {
+    e.preventDefault();
+    this.props.onClick(e)
+  }
   render() {
     return (
       <nav className="navbar navbar-default navbar-fixed-top">
@@ -14,7 +17,7 @@ class NavBar extends React.Component {
         <div className="col-md-6">
           <div className="nav navbar-nav navbar-right">
             <ul className="nav navbar-nav navbar-right">
-              <li><button type="button" id="search-button" className="btn btn-default navbar-btn">Search for Clinical Trials</button></li>
+              <li><button type="button" id="search-button" className="btn btn-default navbar-btn" onClick={(e) => this.onClick(e)}>Search for Clinical Trials</button></li>
             </ul>
           </div>
         </div>
