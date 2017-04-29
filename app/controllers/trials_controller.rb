@@ -4,9 +4,9 @@ class TrialsController < ApplicationController
     p parse_params
     p "="*100
 
-    # @trials = Trial.where(parse_params[:positives]).where.not(parse_params[:negatives])
-    # p "#{@trials.length} clinical trials found"
+    @trials = Trial.where(parse_params[:positives]).where.not(parse_params[:negatives])
     p "="*100
+    p "#{@trials.length} clinical trials found"
 
   end
 
@@ -16,28 +16,38 @@ class TrialsController < ApplicationController
   end
 
   def parse_params
-    query_params = {}
+    query_params = {
+      positives: {},
+      negatives: {}
+    }
 
     case trial_params[:cancerSubType]
     when "type_lung_nsclc_adeno"
-      query_params[:type_lung_nsclc_adeno] = "include"
+      query_params[:positives][:type_lung_nsclc_adeno] = "include"
     when "type_lung_nsclc_large"
-      query_params[:type_lung_nsclc_large] = "include"
+      query_params[:positives][:type_lung_nsclc_large] = "include"
     when "type_lung_nsclc_squamous"
-      query_params[:type_lung_nsclc_squamous] = "include"
+      query_params[:positives][:type_lung_nsclc_squamous] = "include"
     when "type_lung_sclc"
-      query_params[:type_lung_sclc] = "include"
+      query_params[:positives][:type_lung_sclc] = "include"
     end
 
     case trial_params[:cancerStage]
     when "stage_i"
-      query_params[:stage_i] = "include"
+      query_params[:positives][:stage_i] = "include"
     when "stage_ii"
-      query_params[:stage_ii] = "include"
+      query_params[:positives][:stage_ii] = "include"
     when "stage_iii"
-      query_params[:stage_iii] = "include"
+      query_params[:positives][:stage_iii] = "include"
     when "stage_iv"
-      query_params[:stage_iv] = "include"
+      query_params[:positives][:stage_iv] = "include"
+    end
+
+    case trial_params[:chemotherapy]
+    when "yes"
+      query_params[:negatives][:treatment_chemo_systemic] = "exclude"
+    when "no"
+      query_params[:negatives][:treatment_chemo_systemic] = "require"
     end
 
     # case trial_params[:cancerStatus]
@@ -60,11 +70,9 @@ class TrialsController < ApplicationController
     #   query_params[:marker_kras_mutation] = "include"
     # end
     #
-    # case trial_params[:chemotherapy]
-    # when "yes"
-    #
-    # when "no"
-    # end
+    p "*************************************"
+    p query_params
+    p "*************************************"
 
     query_params
   end
