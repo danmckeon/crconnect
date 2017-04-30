@@ -39,6 +39,7 @@ class SearchForm extends React.Component {
         validInput = false;
       };
     };
+
     let ageErrorMsg = this.checkAgeError(query);
     if (ageErrorMsg) {
       errors['ageError'] = ageErrorMsg;
