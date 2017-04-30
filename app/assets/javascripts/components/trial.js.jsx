@@ -1,10 +1,9 @@
 class Trial extends React.Component {
   render () {
     return(
-      <div>
-        <h4>This is where a Trial component goes </h4>
-        <p>{this.props.proof}</p>
-      </div>
+        <td>
+          <a href={"https://clinicaltrials.gov/ct2/show/" + this.props.trial.nct_id}>{this.props.trial.study_title}</a>
+        </td>
     )
   }
 }
