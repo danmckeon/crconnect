@@ -24,6 +24,7 @@ class SearchForm extends React.Component {
         <div className="col-md-3">
         </div>
         <div className="search-form-container col-md-6">
+          <div className="errors"></div>
           <form className="search-form form-group" onSubmit={(e) => this.onSubmit(e)}>
             <div className="row">
               <label htmlFor="cancerType">Cancer Type</label>
