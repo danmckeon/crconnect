@@ -22,16 +22,28 @@ class SearchForm extends React.Component {
     .replace(/^./, (str) => { return str.toUpperCase(); })
   }
 
+  checkAgeError(query) {
+    if ( query.age > 1 && query.age<150 ) {
+      return false;
+    } else {
+      return `Please enter an age from 1 to 150`;
+    }
+  }
+
   validateInput(query) {
     let validInput = true;
     let errors = {};
     for (let field in query) {
       if (query[field] === "Blank") {
-        errors[field] = `Please select an option for ${this.prettifyCamel(field)}`;
+        errors[field + 'Error'] = `Please select an option for ${this.prettifyCamel(field)}`;
         validInput = false;
       };
     };
-    // STILL NEED TO DEAL WITH AGE!
+    let ageErrorMsg = this.checkAgeError(query);
+    if (ageErrorMsg) {
+      errors['ageError'] = ageErrorMsg;
+      validInput = false;
+    }
     this.setState({
       errors: errors,
     })
