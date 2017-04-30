@@ -28,10 +28,12 @@ class SearchForm extends React.Component {
             <div className="row">
               <label htmlFor="cancerType">Cancer Type</label>
               <select name="cancerType" className="form-control">
+                <option value="Blank">(Please select type)</option>
                 <option value="Lung&nbsp;Cancer">Lung Cancer</option>
               </select>
               <label htmlFor="cancerSubType">Sub-Type</label>
               <select name="cancerSubType" className="form-control">
+                <option value="Blank">(Please select sub-type)</option>
                 <option value="Non-Small&nbsp;Cell&nbsp;Lung&nbsp;Cancer&nbsp;(Adenocarcinoma)">Non-Small Cell Lung Cancer (Adenocarcinoma)</option>
                 <option value="Non-Small&nbsp;Cell&nbsp;Lung&nbsp;Cancer&nbsp;(Large&nbsp;Cell)">Non-Small Cell Lung Cancer (Large Cell)</option>
                 <option value="Non-Small&nbsp;Cell&nbsp;Lung&nbsp;Cancer&nbsp;(Squamous)">Non-Small Cell Lung Cancer (Squamous)</option>
@@ -39,6 +41,7 @@ class SearchForm extends React.Component {
               </select>
               <label htmlFor="cancerStage">Stage</label>
               <select name="cancerStage" className="form-control">
+                <option value="Blank">(Please select stage)</option>
                 <option value="Stage&nbsp;I">Stage I</option>
                 <option value="Stage&nbsp;II">Stage II</option>
                 <option value="Stage&nbsp;III">Stage III</option>
@@ -60,11 +63,13 @@ class SearchForm extends React.Component {
               </select> */}
               <label htmlFor="chemotherapy">Is chemotherapy your main form of treatment?</label>
               <select name="chemotherapy" className="form-control">
+                <option value="Blank">(Please select yes or no)</option>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
               </select>
               <label htmlFor="radiation">Have you received radiation as a treatment?</label>
               <select name="radiation" className="form-control">
+                <option value="Blank">(Please select yes or no)</option>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
               </select>
