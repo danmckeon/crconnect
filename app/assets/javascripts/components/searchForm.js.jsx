@@ -28,21 +28,21 @@ class SearchForm extends React.Component {
             <div className="row">
               <label htmlFor="cancerType">Cancer Type</label>
               <select name="cancerType" className="form-control">
-                <option value="lung">Lung Cancer</option>
+                <option value="Lung&nbsp;Cancer">Lung Cancer</option>
               </select>
               <label htmlFor="cancerSubType">Sub-Type</label>
               <select name="cancerSubType" className="form-control">
-                <option value="type_lung_nsclc_adeno">Non-Small Cell Lung Cancer (Adenocarcinoma)</option>
-                <option value="type_lung_nsclc_large">Non-Small Cell Lung Cancer (Large Cell)</option>
-                <option value="type_lung_nsclc_squamous">Non-Small Cell Lung Cancer (Squamous)</option>
-                <option value="type_lung_sclc">Small Cell Lung Cancer</option>
+                <option value="Non-Small&nbsp;Cell&nbsp;Lung&nbsp;Cancer&nbsp;(Adenocarcinoma)">Non-Small Cell Lung Cancer (Adenocarcinoma)</option>
+                <option value="Non-Small&nbsp;Cell&nbsp;Lung&nbsp;Cancer&nbsp;(Large&nbsp;Cell)">Non-Small Cell Lung Cancer (Large Cell)</option>
+                <option value="Non-Small&nbsp;Cell&nbsp;Lung&nbsp;Cancer&nbsp;(Squamous)">Non-Small Cell Lung Cancer (Squamous)</option>
+                <option value="Small&nbsp;Cell&nbsp;Lung&nbsp;Cancer">Small Cell Lung Cancer</option>
               </select>
               <label htmlFor="cancerStage">Stage</label>
               <select name="cancerStage" className="form-control">
-                <option value="stage_i">Stage I</option>
-                <option value="stage_ii">Stage II</option>
-                <option value="stage_iii">Stage III</option>
-                <option value="stage_iv">Stage IV</option>
+                <option value="Stage&nbsp;I">Stage I</option>
+                <option value="Stage&nbsp;II">Stage II</option>
+                <option value="Stage&nbsp;III">Stage III</option>
+                <option value="Stage&nbsp;IV">Stage IV</option>
               </select>
               {/* Commented out a couple fields for MVP. We can re-implement later */}
               {/* <label htmlFor="cancerStatus">Status</label>
@@ -60,13 +60,13 @@ class SearchForm extends React.Component {
               </select> */}
               <label htmlFor="chemotherapy">Is chemotherapy your main form of treatment?</label>
               <select name="chemotherapy" className="form-control">
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
               </select>
               <label htmlFor="radiation">Have you received radiation as a treatment?</label>
               <select name="radiation" className="form-control">
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
               </select>
               <label htmlFor="age">Age</label>
               <input type="text" name="age" className="form-control" />

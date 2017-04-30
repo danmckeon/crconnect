@@ -19,38 +19,38 @@ class TrialsController < ApplicationController
     }
 
     case trial_params[:cancerSubType]
-    when "type_lung_nsclc_adeno"
+    when "Non-Small Cell Lung Cancer (Adenocarcinoma)"
       query_params[:positives][:type_lung_nsclc_adeno] = "include"
-    when "type_lung_nsclc_large"
+    when "Non-Small Cell Lung Cancer (Large Cell)"
       query_params[:positives][:type_lung_nsclc_large] = "include"
-    when "type_lung_nsclc_squamous"
+    when "Non-Small Cell Lung Cancer (Squamous)"
       query_params[:positives][:type_lung_nsclc_squamous] = "include"
-    when "type_lung_sclc"
+    when "Small Cell Lung Cancer"
       query_params[:positives][:type_lung_sclc] = "include"
     end
 
     case trial_params[:cancerStage]
-    when "stage_i"
+    when "Stage I"
       query_params[:positives][:stage_i] = "include"
-    when "stage_ii"
+    when "Stage II"
       query_params[:positives][:stage_ii] = "include"
-    when "stage_iii"
+    when "Stage III"
       query_params[:positives][:stage_iii] = "include"
-    when "stage_iv"
+    when "Stage IV"
       query_params[:positives][:stage_iv] = "include"
     end
 
     case trial_params[:chemotherapy]
-    when "yes"
+    when "Yes"
       query_params[:negatives][:treatment_chemo_systemic] = "exclude"
-    when "no"
+    when "No"
       query_params[:negatives][:treatment_chemo_systemic] = "require"
     end
 
     case trial_params[:radiation]
-    when "yes"
+    when "Yes"
       query_params[:negatives][:treatment_radiation] = "exclude"
-    when "no"
+    when "No"
       query_params[:negatives][:treatment_radiation] = "require"
     end
 
