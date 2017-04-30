@@ -1,4 +1,10 @@
 class SearchForm extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      errors: [],
+    }
+  }
 
 
   jsonifyQueryString(queryString){
@@ -11,17 +17,29 @@ class SearchForm extends React.Component {
     return result;
   }
 
+  prettifyCamel(camelCaseString){
+    return camelCaseString.replace(/([A-Z])/g, ' $1').replace(/^./, function(str){ return str.toUpperCase(); })
+  }
+
   validateInput(query) {
+    let validInput = true;
+    let errors = [];
     for (let field in query) {
       if (query[field] === "Blank") {
-        return false;
+
+        errors.push(`Please select an option for ${this.prettifyCamel(field)}`)
+        validInput = false;
       };
     };
-    return true;
+    this.setState({
+      errors: errors,
+    })
+    return validInput;
   }
 
   onSubmit(e) {
     e.preventDefault();
+    // NEED TO SET STATE HERE POSSIBLY TO EMPTY []
     let queryString = $(e.target).serialize();
     let query = this.jsonifyQueryString(queryString);
     if (this.validateInput(query)) {
@@ -39,7 +57,7 @@ class SearchForm extends React.Component {
         <div className="col-md-3">
         </div>
         <div className="search-form-container col-md-6">
-          <div className="errors"></div>
+          <div className="errors"><p>{JSON.stringify(this.state.errors)}</p></div>
           <form className="search-form form-group" onSubmit={(e) => this.onSubmit(e)}>
             <div className="row">
               <label htmlFor="cancerType">Cancer Type</label>
