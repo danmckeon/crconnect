@@ -41,16 +41,16 @@ class TrialsController < ApplicationController
     end
 
     case trial_params[:chemotherapy]
-    when "yes"
+    when "Yes"
       query_params[:negatives][:treatment_chemo_systemic] = "exclude"
-    when "no"
+    when "No"
       query_params[:negatives][:treatment_chemo_systemic] = "require"
     end
 
     case trial_params[:radiation]
-    when "yes"
+    when "Yes"
       query_params[:negatives][:treatment_radiation] = "exclude"
-    when "no"
+    when "No"
       query_params[:negatives][:treatment_radiation] = "require"
     end
 

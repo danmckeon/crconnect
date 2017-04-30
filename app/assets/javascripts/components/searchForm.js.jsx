@@ -60,13 +60,13 @@ class SearchForm extends React.Component {
               </select> */}
               <label htmlFor="chemotherapy">Is chemotherapy your main form of treatment?</label>
               <select name="chemotherapy" className="form-control">
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
               </select>
               <label htmlFor="radiation">Have you received radiation as a treatment?</label>
               <select name="radiation" className="form-control">
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
               </select>
               <label htmlFor="age">Age</label>
               <input type="text" name="age" className="form-control" />
