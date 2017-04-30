@@ -18,7 +18,8 @@ class SearchForm extends React.Component {
   }
 
   prettifyCamel(camelCaseString){
-    return camelCaseString.replace(/([A-Z])/g, ' $1').replace(/^./, function(str){ return str.toUpperCase(); })
+    return camelCaseString.replace(/([A-Z])/g, ' $1')
+    .replace(/^./, (str) => { return str.toUpperCase(); })
   }
 
   validateInput(query) {
@@ -26,11 +27,11 @@ class SearchForm extends React.Component {
     let errors = [];
     for (let field in query) {
       if (query[field] === "Blank") {
-
         errors.push(`Please select an option for ${this.prettifyCamel(field)}`)
         validInput = false;
       };
     };
+    // STILL NEED TO DEAL WITH AGE!
     this.setState({
       errors: errors,
     })
@@ -39,14 +40,12 @@ class SearchForm extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    // NEED TO SET STATE HERE POSSIBLY TO EMPTY []
     let queryString = $(e.target).serialize();
     let query = this.jsonifyQueryString(queryString);
     if (this.validateInput(query)) {
       this.props.onSubmit(query);
     } else {
-      console.log("INVALID INPUT!!!")
-      return
+      return;
     };
 
   }
@@ -57,7 +56,8 @@ class SearchForm extends React.Component {
         <div className="col-md-3">
         </div>
         <div className="search-form-container col-md-6">
-          <div className="errors"><p>{JSON.stringify(this.state.errors)}</p></div>
+          <Errors errors={this.state.errors} />
+          
           <form className="search-form form-group" onSubmit={(e) => this.onSubmit(e)}>
             <div className="row">
               <label htmlFor="cancerType">Cancer Type</label>
