@@ -1,7 +1,7 @@
 class Errors extends React.Component {
   render () {
-    const errors = this.props.errors.map((error) =>
-      <li key={error}>{error}</li>
+    const errors = Object.keys(this.props.errors).map((field) =>
+      <li key={field}>{this.props.errors[field]}</li>
     );
     return(
       <div className="errors">

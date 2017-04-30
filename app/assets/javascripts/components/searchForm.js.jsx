@@ -24,10 +24,10 @@ class SearchForm extends React.Component {
 
   validateInput(query) {
     let validInput = true;
-    let errors = [];
+    let errors = {};
     for (let field in query) {
       if (query[field] === "Blank") {
-        errors.push(`Please select an option for ${this.prettifyCamel(field)}`)
+        errors[field] = `Please select an option for ${this.prettifyCamel(field)}`;
         validInput = false;
       };
     };
@@ -57,7 +57,6 @@ class SearchForm extends React.Component {
         </div>
         <div className="search-form-container col-md-6">
           <Errors errors={this.state.errors} />
-          
           <form className="search-form form-group" onSubmit={(e) => this.onSubmit(e)}>
             <div className="row">
               <label htmlFor="cancerType">Cancer Type</label>
