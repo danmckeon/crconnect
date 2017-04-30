@@ -30,16 +30,19 @@ class SearchForm extends React.Component {
     }
   }
 
-  validateInput(query) {
-    let validInput = true;
+  checkDropdownError(query) {
     let errors = {};
     for (let field in query) {
       if (query[field] === "Blank") {
         errors[field + 'Error'] = `Please select an option for ${this.prettifyCamel(field)}`;
-        validInput = false;
       };
     };
+    return errors;
+  }
 
+  validateInput(query) {
+    let validInput = true;
+    let errors = this.checkDropdownError(query);
     let ageErrorMsg = this.checkAgeError(query);
     if (ageErrorMsg) {
       errors['ageError'] = ageErrorMsg;
