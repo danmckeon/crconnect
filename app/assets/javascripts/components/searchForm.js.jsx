@@ -11,11 +11,21 @@ class SearchForm extends React.Component {
     return result;
   }
 
+  validateInput(query) {
+    return false;
+  }
+
   onSubmit(e) {
     e.preventDefault();
     let queryString = $(e.target).serialize();
-    let query = this.jsonifyQueryString(queryString)
-    this.props.onSubmit(query);
+    let query = this.jsonifyQueryString(queryString);
+    if (this.validateInput(query)) {
+      this.props.onSubmit(query);
+    } else {
+      console.log("INVALID INPUT!!!")
+      return
+    };
+
   }
 
   render() {
