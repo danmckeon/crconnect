@@ -21,8 +21,8 @@ class Results extends React.Component {
       	<div className="col-sm-10 col-md-6">
           <div className="panel panel-default">
             <div className="panel-heading">
-              <ResultsHeader />
-              <TrialsList example="Cancer Trial info"/>
+              <ResultsHeader query={this.props.query}/>
+              <TrialsList queryResults={this.state.trials}/>
             </div>
           </div>
         </div>
