@@ -1,4 +1,10 @@
 class SearchForm extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      errors: {},
+    }
+  }
 
 
   jsonifyQueryString(queryString){
@@ -11,11 +17,50 @@ class SearchForm extends React.Component {
     return result;
   }
 
+  prettifyCamel(camelCaseString){
+    return camelCaseString.replace(/([A-Z])/g, ' $1')
+    .replace(/^./, (str) => { return str.toUpperCase(); })
+  }
+
+  checkAgeError(errors, query) {
+    if ( !(query.age > 1 && query.age<150) ) {
+      errors['AgeError'] = 'Please enter a number between 1 and 150 for age';
+    }
+    return errors;
+  }
+
+  checkDropdownError(errors, query) {
+    for (let field in query) {
+      if (query[field] === "Blank") {
+        errors[field + 'Error'] = `Please select an option for ${this.prettifyCamel(field)}`;
+      };
+    };
+    return errors;
+  }
+
+  validateInput(query) {
+    let errors = {};
+    errors = this.checkDropdownError(errors, query);
+    errors = this.checkAgeError(errors, query);
+    this.setState({
+      errors: errors,
+    })
+    if ($.isEmptyObject(errors)) {
+      return true;
+    }
+    return false;
+  }
+
   onSubmit(e) {
     e.preventDefault();
     let queryString = $(e.target).serialize();
-    let query = this.jsonifyQueryString(queryString)
-    this.props.onSubmit(query);
+    let query = this.jsonifyQueryString(queryString);
+    if (this.validateInput(query)) {
+      this.props.onSubmit(query);
+    } else {
+      return;
+    };
+
   }
 
   render() {
@@ -24,14 +69,17 @@ class SearchForm extends React.Component {
         <div className="col-md-3">
         </div>
         <div className="search-form-container col-md-6">
+          <Errors errors={this.state.errors} />
           <form className="search-form form-group" onSubmit={(e) => this.onSubmit(e)}>
             <div className="row">
               <label htmlFor="cancerType">Cancer Type</label>
               <select name="cancerType" className="form-control">
+                <option value="Blank">(Please select type)</option>
                 <option value="Lung&nbsp;Cancer">Lung Cancer</option>
               </select>
               <label htmlFor="cancerSubType">Sub-Type</label>
               <select name="cancerSubType" className="form-control">
+                <option value="Blank">(Please select sub-type)</option>
                 <option value="Non-Small&nbsp;Cell&nbsp;Lung&nbsp;Cancer&nbsp;(Adenocarcinoma)">Non-Small Cell Lung Cancer (Adenocarcinoma)</option>
                 <option value="Non-Small&nbsp;Cell&nbsp;Lung&nbsp;Cancer&nbsp;(Large&nbsp;Cell)">Non-Small Cell Lung Cancer (Large Cell)</option>
                 <option value="Non-Small&nbsp;Cell&nbsp;Lung&nbsp;Cancer&nbsp;(Squamous)">Non-Small Cell Lung Cancer (Squamous)</option>
@@ -39,6 +87,7 @@ class SearchForm extends React.Component {
               </select>
               <label htmlFor="cancerStage">Stage</label>
               <select name="cancerStage" className="form-control">
+                <option value="Blank">(Please select stage)</option>
                 <option value="Stage&nbsp;I">Stage I</option>
                 <option value="Stage&nbsp;II">Stage II</option>
                 <option value="Stage&nbsp;III">Stage III</option>
@@ -60,11 +109,13 @@ class SearchForm extends React.Component {
               </select> */}
               <label htmlFor="chemotherapy">Is chemotherapy your main form of treatment?</label>
               <select name="chemotherapy" className="form-control">
+                <option value="Blank">(Please select yes or no)</option>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
               </select>
               <label htmlFor="radiation">Have you received radiation as a treatment?</label>
               <select name="radiation" className="form-control">
+                <option value="Blank">(Please select yes or no)</option>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
               </select>
