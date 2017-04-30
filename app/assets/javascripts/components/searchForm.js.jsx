@@ -12,7 +12,12 @@ class SearchForm extends React.Component {
   }
 
   validateInput(query) {
-    return false;
+    for (let field in query) {
+      if (query[field] === "Blank") {
+        return false;
+      };
+    };
+    return true;
   }
 
   onSubmit(e) {
