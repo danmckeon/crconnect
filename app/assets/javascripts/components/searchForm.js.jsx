@@ -2,7 +2,7 @@ class SearchForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      errors: [],
+      errors: {},
     }
   }
 
@@ -22,16 +22,14 @@ class SearchForm extends React.Component {
     .replace(/^./, (str) => { return str.toUpperCase(); })
   }
 
-  checkAgeError(query) {
-    if ( query.age > 1 && query.age<150 ) {
-      return false;
-    } else {
-      return `Please enter an age from 1 to 150`;
+  checkAgeError(errors, query) {
+    if ( !(query.age > 1 && query.age<150) ) {
+      errors['AgeError'] = 'Please enter a number between 1 and 150 for age';
     }
+    return errors;
   }
 
-  checkDropdownError(query) {
-    let errors = {};
+  checkDropdownError(errors, query) {
     for (let field in query) {
       if (query[field] === "Blank") {
         errors[field + 'Error'] = `Please select an option for ${this.prettifyCamel(field)}`;
@@ -41,17 +39,16 @@ class SearchForm extends React.Component {
   }
 
   validateInput(query) {
-    let validInput = true;
-    let errors = this.checkDropdownError(query);
-    let ageErrorMsg = this.checkAgeError(query);
-    if (ageErrorMsg) {
-      errors['ageError'] = ageErrorMsg;
-      validInput = false;
-    }
+    let errors = {};
+    errors = this.checkDropdownError(errors, query);
+    errors = this.checkAgeError(errors, query);
     this.setState({
       errors: errors,
     })
-    return validInput;
+    if ($.isEmptyObject(errors)) {
+      return true;
+    }
+    return false;
   }
 
   onSubmit(e) {
