@@ -1,6 +1,6 @@
 class TrialsController < ApplicationController
   def index
-    trials = Trial.where(parse_params[:positives]).where.not(parse_params[:negatives])
+    trials = Trial.where(parse_params)
     trials = age_filter(trials, trial_params[:age])
     respond_to do |format|
       format.json { render json: trials }
@@ -13,45 +13,42 @@ class TrialsController < ApplicationController
   end
 
   def parse_params
-    query_params = {
-      positives: {},
-      negatives: {}
-    }
+    query_params = {}
 
     case trial_params[:cancerSubType]
     when "Non-Small Cell Lung Cancer (Adenocarcinoma)"
-      query_params[:positives][:type_lung_nsclc_adeno] = "include"
+      query_params[:type_lung_nsclc_adeno] = "include"
     when "Non-Small Cell Lung Cancer (Large Cell)"
-      query_params[:positives][:type_lung_nsclc_large] = "include"
+      query_params[:type_lung_nsclc_large] = "include"
     when "Non-Small Cell Lung Cancer (Squamous)"
-      query_params[:positives][:type_lung_nsclc_squamous] = "include"
+      query_params[:type_lung_nsclc_squamous] = "include"
     when "Small Cell Lung Cancer"
-      query_params[:positives][:type_lung_sclc] = "include"
+      query_params[:type_lung_sclc] = "include"
     end
 
     case trial_params[:cancerStage]
     when "Stage I"
-      query_params[:positives][:stage_i] = "include"
+      query_params[:stage_i] = "include"
     when "Stage II"
-      query_params[:positives][:stage_ii] = "include"
+      query_params[:stage_ii] = "include"
     when "Stage III"
-      query_params[:positives][:stage_iii] = "include"
+      query_params[:stage_iii] = "include"
     when "Stage IV"
-      query_params[:positives][:stage_iv] = "include"
+      query_params[:stage_iv] = "include"
     end
 
     case trial_params[:chemotherapy]
     when "Yes"
-      query_params[:negatives][:treatment_chemo_systemic] = "exclude"
+      query_params[:treatment_chemo_systemic] = ["require", nil]
     when "No"
-      query_params[:negatives][:treatment_chemo_systemic] = "require"
+      query_params[:treatment_chemo_systemic] = ["exclude", nil]
     end
 
     case trial_params[:radiation]
     when "Yes"
-      query_params[:negatives][:treatment_radiation] = "exclude"
+      query_params[:treatment_radiation] = ["require", nil]
     when "No"
-      query_params[:negatives][:treatment_radiation] = "require"
+      query_params[:treatment_radiation] = ["exclude", nil]
     end
 
     # case trial_params[:cancerStatus]
