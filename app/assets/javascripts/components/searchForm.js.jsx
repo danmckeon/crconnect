@@ -66,9 +66,9 @@ class SearchForm extends React.Component {
   render() {
     return (
       <div className="row">
-        <div className="col-sm-3">
+        <div className="col-md-3">
         </div>
-        <div className="search-form-container col-sm-6">
+        <div className="search-form-container col-md-6">
           <Errors errors={this.state.errors} />
           <form className="search-form form-group" onSubmit={(e) => this.onSubmit(e)}>
             <div className="row">
@@ -125,7 +125,7 @@ class SearchForm extends React.Component {
             </div>
           </form>
         </div>
-        <div className="col-sm-3">
+        <div className="col-md-3">
         </div>
       </div>
     )
