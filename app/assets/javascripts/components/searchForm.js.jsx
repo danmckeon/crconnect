@@ -72,6 +72,7 @@ class SearchForm extends React.Component {
           <div className="panel panel-default">
             <div id="jumpsearch"/>
             <div className="panel-heading">
+              <div id="new-search"/>
               <h3 className="panel-title">
                 Search for Clinial Trials
               </h3>
