@@ -16,7 +16,7 @@ CRConnect is short for Cancer Research Connect. Our mission is to connect patien
 `bundle exec rake db:seed`
 * Run `rails s` to start server
 
-## How to use the app
+## How to Use the App
 
 * CRConnect is deployed at: https://crconnect.herokuapp.com/
 * Use the search form at bottom of home page to find clinical trials matching a particular condition
