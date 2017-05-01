@@ -114,11 +114,11 @@ class SearchForm extends React.Component {
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                   </select>
-                  <label htmlFor="cancerStatus">If you have received treatment, what was the outcome?</label>
+                  <label htmlFor="cancerStatus">If you have received treatment, what is the current status of your condition?</label>
                   <select name="cancerStatus" className="form-control">
                     <option value="Blank">(Please select an option)</option>
-                    <option value="Newly&nbsp;Diagnosed">Never Received Treatment</option>
-                    <option value="Relapse">Relapse</option>
+                    <option value="Never&nbsp;Received&nbsp;Treatment">Never Received Treatment</option>
+                    <option value="Relapsed">Relapsed</option>
                     <option value="Refractory">Refractory</option>
                   </select>
                   {/* <label htmlFor="geneticMarkers">Genetic Markers</label>

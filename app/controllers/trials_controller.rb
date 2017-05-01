@@ -51,16 +51,14 @@ class TrialsController < ApplicationController
       query_params[:treatment_radiation] = ["exclude", nil]
     end
 
-    # case trial_params[:cancerStatus]
-    # when "status_newly_diagnosed"
-    #   query_params[:status_newly_diagnosed] = "include"
-    # when "status_relapse"
-    #   query_params[:negatives[:status_relapse]] = "exclude"
-    #   query_params[:negatives[:status_refractory]] = "require"
-    #   query_params[:negatives[:status_newly_diagnosed]] = "require"
-    # when "status_refractory"
-    #   query_params[:status_refractory] = "include"
-    # end
+    case trial_params[:cancerStatus]
+    when "Never Received Treatment"
+      query_params[:status_newly_diagnosed] = ["require", nil]
+    when "Relapsed"
+      query_params[:status_relapse] = ["require", nil]
+    when "status_refractory"
+      query_params[:status_refractory] = ["require", nil]
+    end
     #
     # case trial_params[:geneticMarkers] # RE-DO THIS
     # when "marker_alk_oncogene"
@@ -78,7 +76,7 @@ class TrialsController < ApplicationController
       min = trial[:age_min].to_i
       max = trial[:age_max].to_i
       user = user_age.to_i
-      min < user && user < max
+      min <= user && user < max
     end
   end
 end
