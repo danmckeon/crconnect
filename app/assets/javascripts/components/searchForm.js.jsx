@@ -121,13 +121,14 @@ class SearchForm extends React.Component {
                     <option value="Relapsed">Relapsed</option>
                     <option value="Refractory">Refractory</option>
                   </select>
-                  {/* <label htmlFor="geneticMarkers">Genetic Markers</label>
+                  <label htmlFor="geneticMarkers">Select a relevant genetic marker you possess (leave blank if you aren't sure)</label>
                   <select name="geneticMarkers" className="form-control">
-                    <option value="none"></option>
-                    <option value="marker_alk_oncogene">ALK Oncogene</option>
-                    <option value="marker_egfr_mutation">EGFR Mutation</option>
-                    <option value="marker_kras_mutation">KRAS Mutation</option>
-                  </select> */}
+                    <option>(Please select an option)</option>
+                    <option value="none">None</option>
+                    <option value="ALK&nbsp;Oncogene">ALK Oncogene</option>
+                    <option value="EGFR&nbsp;Mutation">EGFR Mutation</option>
+                    <option value="KRAS&nbsp;Mutation">KRAS Mutation</option>
+                  </select>
                   <label htmlFor="age">Age</label>
                   <input type="text" name="age" className="form-control" />
                   <input type="submit" id="search-query-submit" className="form-control" value="Find Trials" />
