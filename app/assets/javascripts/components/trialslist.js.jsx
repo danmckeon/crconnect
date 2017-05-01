@@ -1,7 +1,7 @@
 class TrialsList extends React.Component {
   checkQueryResults(queryResults) {
     if (queryResults === null) {
-      return (<tr><td>Loading trials...</td></tr>)
+      return (<tr><td>Loading trials...if you wait longer than 30 seconds, please reload page.</td></tr>)
     } else if (queryResults.length === 0){
       return (<tr><td>Your search did not match any trials.</td></tr>)
     } else {
