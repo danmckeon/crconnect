@@ -14,7 +14,7 @@ CRConnect is short for Cancer Research Connect. Our mission is to connect patien
 `bundle exec rake db:create`
 `bundle exec rake db:migrate`
 `bundle exec rake db:seed`
-* Run `rails s` to start server
+* Run `rails s` in console to start server
 
 ## How to Use the App
 
