@@ -10,6 +10,7 @@ class App extends React.Component {
     this.setState({
       query: null,
     })
+    window.location = '/#new-search'
   }
 
   submitHandler(query) {
