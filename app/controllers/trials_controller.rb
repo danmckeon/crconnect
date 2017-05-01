@@ -9,7 +9,7 @@ class TrialsController < ApplicationController
 
   private
   def trial_params
-    params.permit(:cancerSubType, :cancerStage, :cancerStatus, :geneticMarkers, :chemotherapy, :radiation, :age)
+    params.permit(:cancerType, :cancerSubType, :cancerStage, :cancerStatus, :geneticMarkers, :chemotherapy, :radiation, :age)
   end
 
   def parse_params
