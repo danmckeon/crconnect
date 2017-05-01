@@ -15,8 +15,8 @@ our best effort in compiling this information but cannot guarantee the validity 
 of any information found on this site. Users should always consult their doctor \
 before acting on any information found on this website.")}
         <Mission />
-        {/* <CT101 />
-        <FDAProcess /> */}
+        {/* <CT101 /> */}
+        <FDAProcess />
         <SearchForm onSubmit={(query) => this.onSubmit(query)}/>
       </div>
     )
