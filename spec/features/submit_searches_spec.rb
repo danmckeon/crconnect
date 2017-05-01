@@ -70,4 +70,17 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     click_on('Find Trials')
     expect(page).to have_content("Phase III Randomized Trial")
   end
+
+  scenario "render message for no results when search query matches no results" do
+    visit('/')
+    page.driver.browser.switch_to.alert.accept
+    select('Lung Cancer', from: 'cancerType')
+    select('Non-Small Cell Lung Cancer (Adenocarcinoma)', from: 'cancerSubType')
+    select('Stage IV', from: 'cancerStage')
+    select('No', from: 'chemotherapy')
+    select('No', from: 'radiation')
+    fill_in('age', with: '50')
+    click_on('Find Trials')
+    expect(page).to have_content("Your search did not match any trials.")
+  end
 end
