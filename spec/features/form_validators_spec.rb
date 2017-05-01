@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.feature "Form Validators", type: :feature, js: true do
   scenario "shows error on invalid cancer type input" do
     visit('/')
+    page.driver.browser.switch_to.alert.accept
     select('Small Cell Lung Cancer', from: 'cancerSubType')
     select('Stage II', from: 'cancerStage')
     select('No', from: 'chemotherapy')
@@ -14,6 +15,7 @@ RSpec.feature "Form Validators", type: :feature, js: true do
 
   scenario "shows error on invalid cancer subtype input" do
     visit('/')
+    page.driver.browser.switch_to.alert.accept
     select('Lung Cancer', from: 'cancerType')
     select('Stage II', from: 'cancerStage')
     select('No', from: 'chemotherapy')
@@ -25,6 +27,7 @@ RSpec.feature "Form Validators", type: :feature, js: true do
 
   scenario "shows error on invalid stage input" do
     visit('/')
+    page.driver.browser.switch_to.alert.accept
     select('Lung Cancer', from: 'cancerType')
     select('Small Cell Lung Cancer', from: 'cancerSubType')
     select('No', from: 'chemotherapy')
@@ -36,6 +39,7 @@ RSpec.feature "Form Validators", type: :feature, js: true do
 
   scenario "shows error on invalid chemotherapy input" do
     visit('/')
+    page.driver.browser.switch_to.alert.accept
     select('Lung Cancer', from: 'cancerType')
     select('Small Cell Lung Cancer', from: 'cancerSubType')
     select('Stage II', from: 'cancerStage')
@@ -47,6 +51,7 @@ RSpec.feature "Form Validators", type: :feature, js: true do
 
   scenario "shows error on invalid radiation input" do
     visit('/')
+    page.driver.browser.switch_to.alert.accept
     select('Lung Cancer', from: 'cancerType')
     select('Small Cell Lung Cancer', from: 'cancerSubType')
     select('Stage II', from: 'cancerStage')
@@ -58,6 +63,7 @@ RSpec.feature "Form Validators", type: :feature, js: true do
 
   scenario "shows error on invalid age input" do
     visit('/')
+    page.driver.browser.switch_to.alert.accept
     select('Lung Cancer', from: 'cancerType')
     select('Small Cell Lung Cancer', from: 'cancerSubType')
     select('Stage II', from: 'cancerStage')
@@ -75,6 +81,7 @@ RSpec.feature "Form Validators", type: :feature, js: true do
 
   scenario "shows multiple error messages on multiple pieces of missing input" do
     visit('/')
+    page.driver.browser.switch_to.alert.accept
     select('Small Cell Lung Cancer', from: 'cancerSubType')
     select('Stage II', from: 'cancerStage')
     select('No', from: 'radiation')
@@ -90,6 +97,7 @@ RSpec.feature "Form Validators", type: :feature, js: true do
 
   scenario "allows user to submit form after previously receiving errors" do
     visit('/')
+    page.driver.browser.switch_to.alert.accept
     select('Small Cell Lung Cancer', from: 'cancerSubType')
     select('Stage II', from: 'cancerStage')
     select('No', from: 'radiation')
