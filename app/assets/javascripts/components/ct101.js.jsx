@@ -1,11 +1,4 @@
 class CT101 extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      activeTab: "q5"
-    }
-  }
-
   copyText(activeTab) {
     if(activeTab === "q1"){
                           return "When you participate in a clinical trial for a cancer treatment, you are guaranteed to receive either the treatment under study or the best available standard treatment. Unlike clinical studies in other therapeutic areas, patients in cancer trials receive a sugar pill placebo only if no standard treatment exists. Clinical trials offer you the opportunity to receive new cancer therapies not otherwise available. These therapies represent the most cutting edge thinking among research oncologists. Cancer is one of the most active areas in medical research today. At any time, thousands of clinical trials are underway on new cancer drugs and treatments. There may be multiple trials available nearby."
