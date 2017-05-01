@@ -124,7 +124,7 @@ class SearchForm extends React.Component {
                   <label htmlFor="geneticMarkers">Select a relevant genetic marker you possess (leave blank if you aren't sure)</label>
                   <select name="geneticMarkers" className="form-control">
                     <option>(Please select an option)</option>
-                    <option value="none">None</option>
+                    <option value="None">None</option>
                     <option value="ALK&nbsp;Oncogene">ALK Oncogene</option>
                     <option value="EGFR&nbsp;Mutation">EGFR Mutation</option>
                     <option value="KRAS&nbsp;Mutation">KRAS Mutation</option>

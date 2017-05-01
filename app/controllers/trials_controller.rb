@@ -59,15 +59,19 @@ class TrialsController < ApplicationController
     when "Refractory"
       query_params[:status_refractory] = ["require", nil]
     end
-    #
-    # case trial_params[:geneticMarkers] # RE-DO THIS
-    # when "marker_alk_oncogene"
-    #   query_params[:marker_alk_oncogene] = "include"
-    # when "marker_egfr_mutation"
-    #   query_params[:marker_egfr_mutation] = "include"
-    # when "marker_kras_mutation"
-    #   query_params[:marker_kras_mutation] = "include"
-    # end
+
+    case trial_params[:geneticMarkers]
+    when "None"
+      query_params[:marker_alk_oncogene] = ["exclude", nil]
+      query_params[:marker_egfr_mutation] = ["exclude", nil]
+      query_params[:marker_kras_mutation] = ["exclude", nil]
+    when "ALK Oncogene"
+      query_params[:marker_alk_oncogene] = ["require", "require_alk_or_egfr", nil]
+    when "EGFR Mutation"
+      query_params[:marker_egfr_mutation] = ["require", "require_alk_or_egfr", nil]
+    when "KRAS Mutation"
+      query_params[:marker_kras_mutation] = ["require", nil]
+    end
     query_params
   end
 
