@@ -8,7 +8,7 @@
 
 ## Description
 
-CRConnect is short for Cancer Research Connect. Our mission is to connect patients with research and provide information on clinical trials for anyone diagnosed with cancer. For this initial sprint, we are focusing on lung cancer in particular since it affects so many people. To do this, we scrape the publicly available government filings for clinical trials, but make them searchable in a way that makes sense for the average person.
+CRConnect is short for Cancer Research Connect. Our mission is to connect patients with research and provide information on clinical trials for anyone diagnosed with cancer. For this initial sprint, we focused on lung cancer in particular since it affects so many people. To do this, we scrape the publicly available government filings for clinical trials, but make them searchable in a way that makes sense for the average person.
 
 ## How to Install Locally
 
