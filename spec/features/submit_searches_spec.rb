@@ -82,6 +82,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     select('Stage IV', from: 'cancerStage')
     select('No', from: 'chemotherapy')
     select('No', from: 'radiation')
+    select('Refractory', from: 'cancerStatus')
     fill_in('age', with: '50')
     click_on('Find Trials')
     expect(page).to have_content("Your search did not match any trials.")

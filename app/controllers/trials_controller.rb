@@ -52,11 +52,11 @@ class TrialsController < ApplicationController
     end
 
     case trial_params[:cancerStatus]
-    when "Never Received Treatment"
+    when "Never Received Treatment"
       query_params[:status_newly_diagnosed] = ["require", nil]
     when "Relapsed"
       query_params[:status_relapse] = ["require", nil]
-    when "status_refractory"
+    when "Refractory"
       query_params[:status_refractory] = ["require", nil]
     end
     #
