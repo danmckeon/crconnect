@@ -8,6 +8,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
 
   scenario "render results page on search submit" do
     visit('/')
+    page.driver.browser.switch_to.alert.accept
     select('Lung Cancer', from: 'cancerType')
     select('Small Cell Lung Cancer', from: 'cancerSubType')
     select('Stage II', from: 'cancerStage')
@@ -20,6 +21,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
 
   scenario "render some results when given good input" do
     visit('/')
+    page.driver.browser.switch_to.alert.accept
     select('Lung Cancer', from: 'cancerType')
     select('Non-Small Cell Lung Cancer (Large Cell)', from: 'cancerSubType')
     select('Stage IV', from: 'cancerStage')
@@ -32,6 +34,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
 
   scenario "render the correct results when given good input" do
     visit('/')
+    page.driver.browser.switch_to.alert.accept
     select('Lung Cancer', from: 'cancerType')
     select('Non-Small Cell Lung Cancer (Adenocarcinoma)', from: 'cancerSubType')
     select('Stage I', from: 'cancerStage')
@@ -44,6 +47,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
 
   scenario "render the correct results when given good input part 2" do
     visit('/')
+    page.driver.browser.switch_to.alert.accept
     select('Lung Cancer', from: 'cancerType')
     select('Non-Small Cell Lung Cancer (Squamous)', from: 'cancerSubType')
     select('Stage II', from: 'cancerStage')
@@ -56,6 +60,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
 
   scenario "render the correct results when given good input part 3" do
     visit('/')
+    page.driver.browser.switch_to.alert.accept
     select('Lung Cancer', from: 'cancerType')
     select('Small Cell Lung Cancer', from: 'cancerSubType')
     select('Stage III', from: 'cancerStage')
