@@ -1,7 +1,5 @@
 class Search extends React.Component {
 
-
-
   onSubmit(query) {
     this.props.onSubmit(query)
   }
