@@ -44,64 +44,54 @@ class CT101 extends React.Component {
     const NavItem = ReactBootstrap.NavItem;
     const Content = ReactBootstrap.Content;
     const Pane = ReactBootstrap.Pane;
+    const panelTitle = (
+      <h3>Clinical Trials 101</h3>
+    );
     return(
-      <div className="row">
-         <div className="col-sm-3" />
-       	<div className="col-sm-6">
-           <div className="panel panel-default">
-             <div className="panel-heading">
-               <h3 className="panel-title">
-                 Clinical Trials 101
-               </h3>
-             </div>
-             <div className="panel-body">
-      <Tab.Container id="left-tabs-example" defaultActiveKey="first">
-        <Row className="clearfix">
-          <Col sm={4}>
-            <Nav bsStyle="pills" stacked>
-              <NavItem eventKey="first">
-                {this.headerText("q1")}
-              </NavItem>
-              <NavItem eventKey="second">
-                {this.headerText("q2")}
-              </NavItem>
-              <NavItem eventKey="third">
-                {this.headerText("q3")}
-              </NavItem>
-              <NavItem eventKey="fourth">
-                {this.headerText("q4")}
-              </NavItem>
-              <NavItem eventKey="fifth">
-                {this.headerText("q5")}
-              </NavItem>
-            </Nav>
-          </Col>
-          <Col sm={8}>
-            <Tab.Content animation>
-              <Tab.Pane eventKey="first">
-                {this.copyText("q1")}
-              </Tab.Pane>
-              <Tab.Pane eventKey="second">
-                {this.copyText("q2")}
-              </Tab.Pane>
-              <Tab.Pane eventKey="third">
-                {this.copyText("q3")}
-              </Tab.Pane>
-              <Tab.Pane eventKey="fourth">
-                {this.copyText("q4")}
-              </Tab.Pane>
-              <Tab.Pane eventKey="fifth">
-                {this.copyText("q5")}
-              </Tab.Pane>
-            </Tab.Content>
-          </Col>
-        </Row>
-      </Tab.Container>
-    </div>
-         </div>
-       </div>
-       <div className="col-sm-3" />
-     </div>
+          <Panel header={panelTitle}>
+            <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+              <Row className="clearfix">
+                <Col sm={4}>
+                  <Nav bsStyle="pills" stacked>
+                    <NavItem eventKey="first">
+                      {this.headerText("q1")}
+                    </NavItem>
+                    <NavItem eventKey="second">
+                      {this.headerText("q2")}
+                    </NavItem>
+                    <NavItem eventKey="third">
+                      {this.headerText("q3")}
+                    </NavItem>
+                    <NavItem eventKey="fourth">
+                      {this.headerText("q4")}
+                    </NavItem>
+                    <NavItem eventKey="fifth">
+                      {this.headerText("q5")}
+                    </NavItem>
+                  </Nav>
+                </Col>
+                <Col sm={8}>
+                  <Tab.Content animation>
+                    <Tab.Pane eventKey="first">
+                      {this.copyText("q1")}
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="second">
+                      {this.copyText("q2")}
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="third">
+                      {this.copyText("q3")}
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="fourth">
+                      {this.copyText("q4")}
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="fifth">
+                      {this.copyText("q5")}
+                    </Tab.Pane>
+                  </Tab.Content>
+                </Col>
+              </Row>
+            </Tab.Container>
+          </Panel>
     )
   }
 }
