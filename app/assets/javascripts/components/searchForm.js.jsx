@@ -116,7 +116,7 @@ class SearchForm extends React.Component {
                   </select>
                   <label htmlFor="cancerStatus">If you have received treatment, what is the current status of your condition?</label>
                   <select name="cancerStatus" className="form-control">
-                    <option value="Blank">(Please select an option)</option>
+                    <option>(Please select an option)</option>
                     <option value="Never&nbsp;Received&nbsp;Treatment">Never Received Treatment</option>
                     <option value="Relapsed">Relapsed</option>
                     <option value="Refractory">Refractory</option>

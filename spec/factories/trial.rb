@@ -25,6 +25,9 @@ FactoryGirl.define do
     age_max "150"
     type_lung_nsclc_adeno "include"
     stage_i "include"
+    status_relapse nil
+    status_refractory nil
+    status_newly_diagnosed nil
   end
   factory(:grumpy_submit, class: Trial) do
     nct_id "NCT01993810"
@@ -38,9 +41,12 @@ FactoryGirl.define do
     type_lung_nsclc_adeno "include"
     type_lung_nsclc_large "include"
     type_lung_nsclc_squamous "include"
-    type_lung_sclc "include" 
+    type_lung_sclc "include"
     stage_ii "include"
     stage_iii "include"
     treatment_chemo_systemic "exclude"
+    status_relapse nil
+    status_refractory nil
+    status_newly_diagnosed nil
   end
 end
