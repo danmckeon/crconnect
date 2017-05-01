@@ -102,20 +102,6 @@ class SearchForm extends React.Component {
                     <option value="Stage&nbsp;III">Stage III</option>
                     <option value="Stage&nbsp;IV">Stage IV</option>
                   </select>
-                  {/* Commented out a couple fields for MVP. We can re-implement later */}
-                  {/* <label htmlFor="cancerStatus">Status</label>
-                  <select name="cancerStatus" className="form-control">
-                    <option value="status_newly_diagnosed">Newly Diagnosed</option>
-                    <option value="status_relapse">Relapse</option>
-                    <option value="status_refractory">Refractory</option>
-                  </select>
-                  <label htmlFor="geneticMarkers">Genetic Markers</label>
-                  <select name="geneticMarkers" className="form-control">
-                    <option value="none"></option>
-                    <option value="marker_alk_oncogene">ALK Oncogene</option>
-                    <option value="marker_egfr_mutation">EGFR Mutation</option>
-                    <option value="marker_kras_mutation">KRAS Mutation</option>
-                  </select> */}
                   <label htmlFor="chemotherapy">Is chemotherapy your main form of treatment?</label>
                   <select name="chemotherapy" className="form-control">
                     <option value="Blank">(Please select yes or no)</option>
@@ -128,6 +114,20 @@ class SearchForm extends React.Component {
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                   </select>
+                  <label htmlFor="cancerStatus">If you have received treatment, what was the outcome?</label>
+                  <select name="cancerStatus" className="form-control">
+                    <option value="Blank">(Please select an option)</option>
+                    <option value="Newly&nbsp;Diagnosed">Never Received Treatment</option>
+                    <option value="Relapse">Relapse</option>
+                    <option value="Refractory">Refractory</option>
+                  </select>
+                  {/* <label htmlFor="geneticMarkers">Genetic Markers</label>
+                  <select name="geneticMarkers" className="form-control">
+                    <option value="none"></option>
+                    <option value="marker_alk_oncogene">ALK Oncogene</option>
+                    <option value="marker_egfr_mutation">EGFR Mutation</option>
+                    <option value="marker_kras_mutation">KRAS Mutation</option>
+                  </select> */}
                   <label htmlFor="age">Age</label>
                   <input type="text" name="age" className="form-control" />
                   <input type="submit" id="search-query-submit" className="form-control" value="Find Trials" />
