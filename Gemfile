@@ -34,6 +34,8 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'react-rails'
 
+gem 'heroku_secrets', github: 'alexpeattie/heroku_secrets'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
