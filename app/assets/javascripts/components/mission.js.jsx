@@ -11,7 +11,7 @@ class Mission extends React.Component {
             </h3>
           </div>
           <div className="panel-body">
-            <p className="mission-body">Less than 5% of cancer patients participate in clinical trials despite having a participant satisfaction rate of more than 90%. Not enough patients (and doctors) know what trials are available to them. Patients need more options. Researchers need more participants. CRConnect aims to make information on clinical trials more avaialable to the people who can be helped by them.</p>
+            <p className="mission-body">Less than 5% of cancer patients participate in clinical trials despite having a participant satisfaction rate of more than 90%. Not enough patients (and doctors) know what trials are available to them. Patients need more options. Researchers need more participants. CRConnect aims to make information on clinical trials more available to the people who can be helped by them.</p>
           </div>
         </div>
       </div>
