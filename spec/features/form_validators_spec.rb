@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "Form Validators", type: :feature, js: true do
-  scenario "shows error on invalid cancer type input" do
+  scenario "shows correct error messages on individual invalid input" do
     visit('/')
     page.driver.browser.switch_to.alert.accept
     select('Small Cell Lung Cancer', from: 'cancerSubType')
@@ -11,72 +11,26 @@ RSpec.feature "Form Validators", type: :feature, js: true do
     fill_in('age', with: '25')
     click_on('Find Trials')
     expect(page).to have_content('Please select an option for Cancer Type')
-  end
 
-  scenario "shows error on invalid cancer subtype input" do
-    visit('/')
-    page.driver.browser.switch_to.alert.accept
     select('Lung Cancer', from: 'cancerType')
-    select('Stage II', from: 'cancerStage')
-    select('No', from: 'chemotherapy')
-    select('No', from: 'radiation')
-    fill_in('age', with: '25')
+    select('(Please select sub-type)', from: 'cancerSubType')
     click_on('Find Trials')
     expect(page).to have_content('Please select an option for Cancer Sub Type')
-  end
 
-  scenario "shows error on invalid stage input" do
-    visit('/')
-    page.driver.browser.switch_to.alert.accept
-    select('Lung Cancer', from: 'cancerType')
     select('Small Cell Lung Cancer', from: 'cancerSubType')
-    select('No', from: 'chemotherapy')
-    select('No', from: 'radiation')
-    fill_in('age', with: '25')
+    select('(Please select stage)', from: 'cancerStage')
     click_on('Find Trials')
     expect(page).to have_content('Please select an option for Cancer Stage')
-  end
 
-  scenario "shows error on invalid chemotherapy input" do
-    visit('/')
-    page.driver.browser.switch_to.alert.accept
-    select('Lung Cancer', from: 'cancerType')
-    select('Small Cell Lung Cancer', from: 'cancerSubType')
     select('Stage II', from: 'cancerStage')
-    select('No', from: 'radiation')
-    fill_in('age', with: '25')
+    select('(Please select yes or no)', from: 'chemotherapy')
     click_on('Find Trials')
     expect(page).to have_content('Please select an option for Chemotherapy')
-  end
 
-  scenario "shows error on invalid radiation input" do
-    visit('/')
-    page.driver.browser.switch_to.alert.accept
-    select('Lung Cancer', from: 'cancerType')
-    select('Small Cell Lung Cancer', from: 'cancerSubType')
-    select('Stage II', from: 'cancerStage')
     select('No', from: 'chemotherapy')
-    fill_in('age', with: '25')
+    select('(Please select yes or no)', from: 'radiation')
     click_on('Find Trials')
     expect(page).to have_content('Please select an option for Radiation')
-  end
-
-  scenario "shows error on invalid age input" do
-    visit('/')
-    page.driver.browser.switch_to.alert.accept
-    select('Lung Cancer', from: 'cancerType')
-    select('Small Cell Lung Cancer', from: 'cancerSubType')
-    select('Stage II', from: 'cancerStage')
-    select('No', from: 'chemotherapy')
-    select('No', from: 'radiation')
-    click_on('Find Trials')
-    expect(page).to have_content('Please enter a number between 1 and 150 for age')
-    fill_in('age', with: 'a')
-    click_on('Find Trials')
-    expect(page).to have_content('Please enter a number between 1 and 150 for age')
-    fill_in('age', with: '151')
-    click_on('Find Trials')
-    expect(page).to have_content('Please enter a number between 1 and 150 for age')
   end
 
   scenario "shows multiple error messages on multiple pieces of missing input" do
