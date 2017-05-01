@@ -2,7 +2,7 @@ class CT101 extends React.Component {
   constructor() {
     super();
     this.state = {
-      activeTab: "q1"
+      activeTab: "q5"
     }
   }
 
@@ -25,6 +25,12 @@ class CT101 extends React.Component {
       return "Are clinical trials right for me?"
     } else if(activeTab === "q2"){
       return "Why participate in a clinical trial?"
+    } else if(activeTab === "q3"){
+      return "Are clinical trials safe?"
+    } else if(activeTab === "q4"){
+      return "What is informed consent?"
+    } else if(activeTab === "q5"){
+      return "How do I participate in a clinical trial?"
     }
   }
 
