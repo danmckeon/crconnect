@@ -13,11 +13,6 @@ class TrialsList extends React.Component {
 
     return(
       <table className="table table-hover table-bordered table-responsive">
-        <thead>
-          <tr>
-            <th>Study Title</th>
-          </tr>
-        </thead>
         <tbody>
           {trials}
         </tbody>
