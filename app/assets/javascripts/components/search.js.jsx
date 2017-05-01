@@ -16,7 +16,7 @@ of any information found on this site. Users should always consult their doctor 
 before acting on any information found on this website.")}
         <Mission />
         <CT101 />
-        {/* <FDAProcess /> */}
+        <FDAProcess />
         <SearchForm onSubmit={(query) => this.onSubmit(query)}/>
       </div>
     )

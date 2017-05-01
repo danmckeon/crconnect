@@ -11,3 +11,29 @@ p.mission-body {
 #search-query-submit {
   margin-top: 10px;
 }
+
+// CSS for FDA Process
+.panel-icon-container {
+  padding: 7px;
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .fda-panel {
+    height: 425px;
+    text-align: center;
+  }
+  .inner-fda-panel {
+    height: 100%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .fda-panel {
+        height: 315px;
+        text-align: center;
+  }
+  .inner-fda-panel {
+        vertical-align: middle;
+
+  }
+}
