@@ -8,7 +8,7 @@ class Search extends React.Component {
     return(
       <div className="search-layout container">
         <Mission />
-        {/* <CT101 /> */}
+        <CT101 />
         <FDAProcess />
         <SearchForm onSubmit={(query) => this.onSubmit(query)}/>
       </div>
