@@ -4,6 +4,8 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
   before(:each) do
     FactoryGirl.create(:happy_submit)
     FactoryGirl.create(:grumpy_submit)
+    FactoryGirl.create(:submission)
+    FactoryGirl.create(:submission2)
   end
 
   scenario "render results page on search submit" do
@@ -72,6 +74,62 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     fill_in('age', with: '50')
     click_on('Find Trials')
     expect(page).to have_content("Phase III Randomized Trial")
+  end
+
+  scenario "render the correct results when given good input part 4 (genetic markers)" do
+    visit('/')
+    page.driver.browser.switch_to.alert.accept
+    select('Lung Cancer', from: 'cancerType')
+    select('Small Cell Lung Cancer', from: 'cancerSubType')
+    select('Stage III', from: 'cancerStage')
+    select('No', from: 'chemotherapy')
+    select('No', from: 'radiation')
+    select('None', from: 'geneticMarkers')
+    fill_in('age', with: '50')
+    click_on('Find Trials')
+    expect(page).to have_content("Study of the effects of the Phase on the status")
+  end
+
+  scenario "render the correct results when given good input part 5 (genetic markers)" do
+    visit('/')
+    page.driver.browser.switch_to.alert.accept
+    select('Lung Cancer', from: 'cancerType')
+    select('Small Cell Lung Cancer', from: 'cancerSubType')
+    select('Stage III', from: 'cancerStage')
+    select('No', from: 'chemotherapy')
+    select('No', from: 'radiation')
+    select('ALK Oncogene', from: 'geneticMarkers')
+    fill_in('age', with: '50')
+    click_on('Find Trials')
+    expect(page).to have_content("Very important study")
+  end
+
+  scenario "render the correct results when given good input part 6 (genetic markers)" do
+    visit('/')
+    page.driver.browser.switch_to.alert.accept
+    select('Lung Cancer', from: 'cancerType')
+    select('Small Cell Lung Cancer', from: 'cancerSubType')
+    select('Stage III', from: 'cancerStage')
+    select('No', from: 'chemotherapy')
+    select('No', from: 'radiation')
+    select('EGFR Mutation', from: 'geneticMarkers')
+    fill_in('age', with: '50')
+    click_on('Find Trials')
+    expect(page).to have_content("Very important study")
+  end
+
+  scenario "render the correct results when given good input part 7 (genetic markers)" do
+    visit('/')
+    page.driver.browser.switch_to.alert.accept
+    select('Lung Cancer', from: 'cancerType')
+    select('Small Cell Lung Cancer', from: 'cancerSubType')
+    select('Stage III', from: 'cancerStage')
+    select('No', from: 'chemotherapy')
+    select('No', from: 'radiation')
+    select('KRAS Mutation', from: 'geneticMarkers')
+    fill_in('age', with: '50')
+    click_on('Find Trials')
+    expect(page).to have_content("Very important study")
   end
 
   scenario "render message for no results when search query matches no results" do
