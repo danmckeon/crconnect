@@ -120,7 +120,8 @@ SHORT_SAMPLE_UPLOAD_URL = "https://clinicaltrials.gov/ct2/results?term=&recr=Rec
 LONGER_SAMPLE_UPLOAD_URL = %q[https://clinicaltrials.gov/ct2/results?term=&recr=Recruiting&cntry1=NA%3AUS&cond="mouth+cancer"&studyxml=true]
 LUNG_CANCER_UPLOAD_URL = %q[https://clinicaltrials.gov/ct2/results?term=&recr=Recruiting&cntry1=NA%3AUS&cond="lung+cancer"&phase=1&phase=2&studyxml=true]
 COLORECTAL_CANCER_UPLOAD_URL = %q[https://clinicaltrials.gov/ct2/results?term=&recr=Recruiting&cntry1=NA%3AUS&cond="colon cancer"+OR+"rectal cancer"+OR+"colorectal cancer"+OR+"rectum cancer"&phase=1&phase=2&studyxml=true]
-LUNG_OR_COLO_UPLOAD_URL = %q[https://clinicaltrials.gov/ct2/results?term=&recr=Recruiting&cntry1=NA%3AUS&cond="lung+cancer"+OR+"colon cancer"+OR+"rectal cancer"+OR+"colorectal cancer"+OR+"rectum cancer"&phase=1&phase=2&studyxml=true]
+LUNG_OR_COLO_OPEN_UPLOAD_URL = %q[https://clinicaltrials.gov/ct2/results?term=&recr=Open&cntry1=NA%3AUS&cond="lung+cancer"+OR+"colon cancer"+OR+"rectal cancer"+OR+"colorectal cancer"+OR+"rectum cancer"&phase=1&phase=2&studyxml=true]
+LUNG_OR_COLO_ACTIVENR_UPLOAD_URL = %q[https://clinicaltrials.gov/ct2/results?term=&recr=Active%2C+not+recruiting&cntry1=NA%3AUS&cond="lung+cancer"+OR+"colon cancer"+OR+"rectal cancer"+OR+"colorectal cancer"+OR+"rectum cancer"&phase=1&phase=2&studyxml=true]
 LEUKEMIA_UPLOAD_URL = %q[https://clinicaltrials.gov/ct2/results?term=&recr=Recruiting&cntry1=NA%3AUS&cond="leukemia"&phase=1&phase=2&studyxml=true]
 LYMPHOMA_UPLOAD_URL = %q[https://clinicaltrials.gov/ct2/results?term=&recr=Recruiting&cntry1=NA%3AUS&cond="lymphoma"&phase=1&phase=2&studyxml=true]
 FULL_UPLOAD_URL = "https://clinicaltrials.gov/ct2/results?term=&recr=Recruiting&cntry1=NA%3AUS&studyxml=true"
@@ -135,7 +136,8 @@ all_trial_xmls = xml_dir_path + '*.xml'
 create_upload_directories(parent_dir_path, zip_dir_path, xml_dir_path)
 
 # download zip file to directory and unzip to xmls
-download_zip_file(LONGER_SAMPLE_UPLOAD_URL, zip_dir_path, xml_dir_path)
+download_zip_file(LUNG_OR_COLO_OPEN_UPLOAD_URL, zip_dir_path, xml_dir_path)
+download_zip_file(LUNG_OR_COLO_ACTIVENR_UPLOAD_URL, zip_dir_path, xml_dir_path)
 
 Trial.destroy_all
 
@@ -146,14 +148,28 @@ Dir.glob(all_trial_xmls) do |xml_file|
   create_trial_from_xml(xml_file_noko)
 end
 
-lung_and_colo_csv = File.join(Rails.root, 'db', 'seed_data', 'lung_and_colo_test.csv')
+lung_and_colo_csv = File.join(Rails.root, 'db', 'seed_data', 'lung_and_colo.csv')
+
+missing_trials = []
 
 CSV.foreach(lung_and_colo_csv, headers: true, encoding: 'BOM|UTF-8:UTF-8') do |row|
   if row[1] == "1"
     trial = Trial.find_by(nct_id: row[0])  
   else
-    xml_file_noko = Nokogiri::XML(File.open(xml_dir_path + (row[0] + '.xml')))
-    trial = create_trial_from_xml(xml_file_noko)
+    new_trial_path = xml_dir_path + (row[0] + '.xml')
+    if File.exist? File.expand_path new_trial_path
+      xml_file_noko = Nokogiri::XML(File.open(new_trial_path))
+      trial = create_trial_from_xml(xml_file_noko)
+    end
   end
-  trial.update_attributes(row.to_hash)
+  if trial
+    trial.update_attributes(row.to_hash)
+  else
+    missing_trials << row[0]
+  end
+end
+
+if missing_trials.length > 0
+  puts "Trials appearing in csv, but not seeded to database by Nokogiri:"
+  missing_trials.each { |trial| puts trial }
 end
