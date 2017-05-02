@@ -29,7 +29,7 @@ def download_zip_file(upload_url, zip_dir_path, xml_dir_path)
   end
 end
 
-def save_trial_data(trial_xml)
+def create_trial_from_xml(trial_xml)
   trial = Trial.new
   trial[:org_study_id] = trial_xml.xpath("//id_info//org_study_id").text
   trial[:secondary_id] = trial_xml.xpath("//id_info//secondary_id").text
@@ -79,6 +79,7 @@ def save_trial_data(trial_xml)
   trial[:has_expanded_access] = trial_xml.xpath("//has_expanded_access").text
   trial[:condition_browse_mesh_term] = trial_xml.xpath("//condition_browse//mesh_term").text
   trial.save
+  trial
 end
 
 # USE EVENTUALLY FOR PARSING SITES
@@ -119,6 +120,7 @@ SHORT_SAMPLE_UPLOAD_URL = "https://clinicaltrials.gov/ct2/results?term=&recr=Rec
 LONGER_SAMPLE_UPLOAD_URL = %q[https://clinicaltrials.gov/ct2/results?term=&recr=Recruiting&cntry1=NA%3AUS&cond="mouth+cancer"&studyxml=true]
 LUNG_CANCER_UPLOAD_URL = %q[https://clinicaltrials.gov/ct2/results?term=&recr=Recruiting&cntry1=NA%3AUS&cond="lung+cancer"&phase=1&phase=2&studyxml=true]
 COLORECTAL_CANCER_UPLOAD_URL = %q[https://clinicaltrials.gov/ct2/results?term=&recr=Recruiting&cntry1=NA%3AUS&cond="colon cancer"+OR+"rectal cancer"+OR+"colorectal cancer"+OR+"rectum cancer"&phase=1&phase=2&studyxml=true]
+LUNG_OR_COLO_UPLOAD_URL = %q[https://clinicaltrials.gov/ct2/results?term=&recr=Recruiting&cntry1=NA%3AUS&cond="lung+cancer"+OR+"colon cancer"+OR+"rectal cancer"+OR+"colorectal cancer"+OR+"rectum cancer"&phase=1&phase=2&studyxml=true]
 LEUKEMIA_UPLOAD_URL = %q[https://clinicaltrials.gov/ct2/results?term=&recr=Recruiting&cntry1=NA%3AUS&cond="leukemia"&phase=1&phase=2&studyxml=true]
 LYMPHOMA_UPLOAD_URL = %q[https://clinicaltrials.gov/ct2/results?term=&recr=Recruiting&cntry1=NA%3AUS&cond="lymphoma"&phase=1&phase=2&studyxml=true]
 FULL_UPLOAD_URL = "https://clinicaltrials.gov/ct2/results?term=&recr=Recruiting&cntry1=NA%3AUS&studyxml=true"
@@ -141,12 +143,17 @@ Trial.destroy_all
 
 Dir.glob(all_trial_xmls) do |xml_file|
   xml_file_noko = Nokogiri::XML(File.open(xml_file))
-  save_trial_data(xml_file_noko)
+  create_trial_from_xml(xml_file_noko)
 end
 
 lung_and_colo_csv = File.join(Rails.root, 'db', 'seed_data', 'lung_and_colo_test.csv')
 
 CSV.foreach(lung_and_colo_csv, headers: true, encoding: 'BOM|UTF-8:UTF-8') do |row|
-  trial = Trial.find_by(nct_id: row[0])
+  if row[1] == "1"
+    trial = Trial.find_by(nct_id: row[0])  
+  else
+    xml_file_noko = Nokogiri::XML(File.open(xml_dir_path + (row[0] + '.xml')))
+    trial = create_trial_from_xml(xml_file_noko)
+  end
   trial.update_attributes(row.to_hash)
 end
