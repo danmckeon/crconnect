@@ -45,6 +45,25 @@ def clean_raw_age(raw_age, default_age)
   age
 end
 
+def find_trial_sites(trial_xml)
+  sites = []
+  trial_xml.xpath("//location").each do |site|
+    new_site = Site.new
+    new_site.name = site.at("name").text if site.at("name")
+    new_site.city = site.at("city").text if site.at("city")
+    new_site.state = site.at("state").text if site.at("state")
+    new_site.zip = site.at("zip").text if site.at("zip")
+    new_site.country = site.at("country").text if site.at("country")
+    new_site.status = site.at("status").text if site.at("status")
+    new_site.contact_name = site.at("contact/last_name").text if site.at("contact/last_name")
+    new_site.contact_phone = site.at("contact/phone").text if site.at("contact/phone")
+    p site.at("investigator/last_name").text if site.at("investigator/last_name")
+    p site.at("investigator/role").text if site.at("investigator/role")
+    sites << new_site
+  end
+  sites
+end
+
 def create_trial_from_xml(trial_xml)
   trial = Trial.new
   trial[:org_study_id] = trial_xml.xpath("//id_info//org_study_id").text
@@ -94,6 +113,8 @@ def create_trial_from_xml(trial_xml)
   trial[:has_expanded_access] = trial_xml.xpath("//has_expanded_access").text
   trial[:condition_browse_mesh_term] = trial_xml.xpath("//condition_browse//mesh_term").text
   trial.save
+  # trial.sites =
+  find_trial_sites(trial_xml)
   trial
 end
 
