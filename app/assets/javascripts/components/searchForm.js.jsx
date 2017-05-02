@@ -74,7 +74,7 @@ class SearchForm extends React.Component {
             <div className="panel-heading">
               <div id="new-search"/>
               <h3 className="panel-title">
-                Search for Clinial Trials
+                Search for Clinical Trials
               </h3>
             </div>
             <div className="panel-body search-form-body">
@@ -84,16 +84,23 @@ class SearchForm extends React.Component {
                   <label htmlFor="cancerType">Cancer Type</label>
                   <select name="cancerType" className="form-control">
                     <option value="Blank">(Please select type)</option>
-                    <option value="Lung&nbsp;Cancer">Lung Cancer</option>
+                    <option disabled="disabled" value="Lung&nbsp;Cancer">---------------------Lung---------------------</option>
+                    <option value="Non-Small&nbsp;Cell&nbsp;Lung&nbsp;Cancer&nbsp;(Adenocarcinoma)">Non-Small Cell Lung Cancer (Adenocarcinoma)</option>
+                    <option value="Non-Small&nbsp;Cell&nbsp;Lung&nbsp;Cancer&nbsp;(Large&nbsp;Cell)">Non-Small Cell Lung Cancer (Large Cell)</option>
+                    <option value="Non-Small&nbsp;Cell&nbsp;Lung&nbsp;Cancer&nbsp;(Squamous)">Non-Small Cell Lung Cancer (Squamous)</option>
+                    <option value="Small&nbsp;Cell&nbsp;Lung&nbsp;Cancer">Small Cell Lung Cancer</option>
+                    <option disabled="disabled" value="Colorectal&nbsp;Cancer">-------------------Colorectal------------------</option>
+                    <option value="Colorectal&nbsp;Cancer&nbsp;(Adenocarcinoma)">Colorectal Cancer (Adenocarcinoma)</option>
+                    <option value="Colorectal&nbsp;Cancer&nbsp;(Other&nbsp;types)">Colorectal Cancer (Other types)</option>
                   </select>
-                  <label htmlFor="cancerSubType">Sub-Type</label>
+                  {/* <label htmlFor="cancerSubType">Sub-Type</label>
                   <select name="cancerSubType" className="form-control">
                     <option value="Blank">(Please select sub-type)</option>
                     <option value="Non-Small&nbsp;Cell&nbsp;Lung&nbsp;Cancer&nbsp;(Adenocarcinoma)">Non-Small Cell Lung Cancer (Adenocarcinoma)</option>
                     <option value="Non-Small&nbsp;Cell&nbsp;Lung&nbsp;Cancer&nbsp;(Large&nbsp;Cell)">Non-Small Cell Lung Cancer (Large Cell)</option>
                     <option value="Non-Small&nbsp;Cell&nbsp;Lung&nbsp;Cancer&nbsp;(Squamous)">Non-Small Cell Lung Cancer (Squamous)</option>
                     <option value="Small&nbsp;Cell&nbsp;Lung&nbsp;Cancer">Small Cell Lung Cancer</option>
-                  </select>
+                  </select> */}
                   <label htmlFor="cancerStage">Stage</label>
                   <select name="cancerStage" className="form-control">
                     <option value="Blank">(Please select stage)</option>
@@ -121,6 +128,7 @@ class SearchForm extends React.Component {
                     <option value="Relapsed">Relapsed</option>
                     <option value="Refractory">Refractory</option>
                   </select>
+                  {/* Note: Consider checkbox input for genetic markers, and check controller logic. */}
                   <label htmlFor="geneticMarkers">Select a relevant genetic marker you possess (leave blank if you aren't sure)</label>
                   <select name="geneticMarkers" className="form-control">
                     <option>(Please select an option)</option>
