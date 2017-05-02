@@ -148,6 +148,8 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     fill_in('age', with: '50')
     click_on('Find Trials')
     expect(page).to have_content("Fairly important study")
+    page.find(".trial-buttons").click
+    expect(page).to have_content("More info")
   end
 
   scenario "render message for no results when search query matches no results" do
