@@ -2,8 +2,9 @@ class FDAProcess extends React.Component {
   render () {
     return(
       <div className="row">
-        <div className="col-sm-1"/>
+        <div className="col-sm-1" />
         <div className="col-sm-10">
+          <div >
           <div className="panel panel-default">
             <div className="panel-heading">
               <h3 className="panel-title">
@@ -48,8 +49,9 @@ class FDAProcess extends React.Component {
             </div>
           </div>
         </div>
+        </div>
         <div className="col-sm-1"/>
-      </div>
+    </div>
     )
   }
 }
