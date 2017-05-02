@@ -1,6 +1,12 @@
 require 'zip'
 require 'csv'
 
+def create_data_dir(data_dir_path)
+  if !Dir.exists?(data_dir_path)
+    Dir.mkdir(data_dir_path)
+  end
+end
+
 def assign_parent_dir_name
   parent_dir_name = "CTDOTGOV_UPLOAD_" + Time.now.to_i.to_s
 end
@@ -135,11 +141,15 @@ LEUKEMIA_UPLOAD_URL = %q[https://clinicaltrials.gov/ct2/results?term=&recr=Recru
 LYMPHOMA_UPLOAD_URL = %q[https://clinicaltrials.gov/ct2/results?term=&recr=Recruiting&cntry1=NA%3AUS&cond="lymphoma"&phase=1&phase=2&studyxml=true]
 FULL_UPLOAD_URL = "https://clinicaltrials.gov/ct2/results?term=&recr=Recruiting&cntry1=NA%3AUS&studyxml=true"
 
+
+data_dir_path = Rails.root.join('tmp', 'data')
 parent_dir_name = assign_parent_dir_name
 parent_dir_path = Rails.root.join('tmp', 'data', parent_dir_name)
 zip_dir_path = Rails.root.join('tmp', 'data', parent_dir_name, 'ZIP')
 xml_dir_path = Rails.root.join('tmp', 'data', parent_dir_name, 'XML')
 all_trial_xmls = xml_dir_path + '*.xml'
+
+create_data_dir(data_dir_path)
 
 # create necessary directories for zip upload and extraction to xmls
 create_upload_directories(parent_dir_path, zip_dir_path, xml_dir_path)
