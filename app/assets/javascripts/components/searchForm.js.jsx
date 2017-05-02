@@ -128,6 +128,7 @@ class SearchForm extends React.Component {
                     <option value="Relapsed">Relapsed</option>
                     <option value="Refractory">Refractory</option>
                   </select>
+                  {/* Note: Consider checkbox input for genetic markers, and check controller logic. */}
                   <label htmlFor="geneticMarkers">Select a relevant genetic marker you possess (leave blank if you aren't sure)</label>
                   <select name="geneticMarkers" className="form-control">
                     <option>(Please select an option)</option>
