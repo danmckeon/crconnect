@@ -29,6 +29,16 @@ def download_zip_file(upload_url, zip_dir_path, xml_dir_path)
   end
 end
 
+def clean_raw_age(raw_age, default_age)
+  raw_age_arr = raw_age.split(' ')
+  if raw_age_arr[1] == "Years"
+    age = raw_age_arr[0]
+  else
+    age = default_age
+  end
+  age
+end
+
 def create_trial_from_xml(trial_xml)
   trial = Trial.new
   trial[:org_study_id] = trial_xml.xpath("//id_info//org_study_id").text
@@ -59,9 +69,8 @@ def create_trial_from_xml(trial_xml)
   trial[:arm_group_description] = trial_xml.xpath("//arm_group//description").text
   trial[:eligibility_criteria_text] = trial_xml.xpath("//eligibility//criteria//textblock").text
   trial[:gender] = trial_xml.xpath("//eligibility//gender").text
-  trial[:minimum_age] = trial_xml.xpath("//eligibility//minimum_age").text
-  trial[:maximum_age] = trial_xml.xpath("//eligibility//maximum_age").text
-  trial[:maximum_age] = '150' if (trial[:maximum_age] == '')
+  trial[:minimum_age] = clean_raw_age(trial_xml.xpath("//eligibility//minimum_age").text, "0")
+  trial[:maximum_age] = clean_raw_age(trial_xml.xpath("//eligibility//maximum_age").text, "150")
   trial[:overall_official_name] = trial_xml.xpath("//overall_official//last_name").text
   trial[:overall_official_role] = trial_xml.xpath("//overall_official//role").text
   trial[:overall_official_affiliation] = trial_xml.xpath("//overall_official//affiliation").text
