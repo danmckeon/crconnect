@@ -50,3 +50,26 @@ p.mission-body {
   margin: 0 auto;
   margin-top: 15px;
 }
+
+.footer-contact-separator {
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+.footer-contact-container {
+  text-align: center;
+}
+
+.footer-disclaimer-container {
+  text-align: center;
+  margin-top: 5px;
+}
+
+@media screen and (max-width: 450px) {
+  .footer-contact-separator {
+    display: none;
+  }
+  .footer-contact-text{
+    display: block;
+  }
+}

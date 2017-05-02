@@ -16,17 +16,21 @@ class Results extends React.Component {
   };
   render () {
     return(
-      <div>
-        <div className="col-sm-1 col-md-3" />
-      	<div className="col-sm-10 col-md-6">
-          <div className="panel panel-default">
-            <div className="panel-heading">
-              <ResultsHeader query={this.props.query}/>
-              <TrialsList queryResults={this.state.trials}/>
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-1" />
+        	<div className="col-sm-10">
+            <div className="panel panel-default">
+              <div className="panel-heading">
+                <ResultsHeader query={this.props.query}/>
+              </div>
+              <div className="panel-body">
+                <TrialsList queryResults={this.state.trials}/>
+              </div>
             </div>
           </div>
+          <div className="col-sm-1" />
         </div>
-        <div className="col-sm-1 col-md-3" />
       </div>
     )
   }
