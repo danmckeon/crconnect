@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170502033253) do
+ActiveRecord::Schema.define(version: 20170502033440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,12 +18,12 @@ ActiveRecord::Schema.define(version: 20170502033253) do
   create_table "trials", force: :cascade do |t|
     t.string   "nct_id"
     t.string   "phase"
-    t.string   "sponsor_name"
-    t.string   "sponsor_type"
-    t.string   "study_title"
+    t.string   "lead_sponsor_name"
+    t.string   "lead_sponsor_class"
+    t.string   "brief_title"
     t.string   "cohort"
-    t.string   "age_min"
-    t.string   "age_max"
+    t.string   "minimum_age"
+    t.string   "maximum_age"
     t.string   "type_lung_nsclc_adeno"
     t.string   "type_lung_nsclc_large"
     t.string   "type_lung_nsclc_squamous"
