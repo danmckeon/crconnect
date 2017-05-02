@@ -244,6 +244,7 @@ DEPENDENCIES
   react-bootstrap-rails
   react-rails
   rspec-rails
+  rubyzip
   sass-rails (~> 5.0)
   selenium-webdriver
   simplecov

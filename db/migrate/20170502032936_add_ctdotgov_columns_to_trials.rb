@@ -1,0 +1,44 @@
+class AddCtdotgovColumnsToTrials < ActiveRecord::Migration[5.0]
+  def change
+    add_column :trials, :org_study_id, :string
+    add_column :trials, :secondary_id, :string
+    add_column :trials, :nct_alias, :string
+    add_column :trials, :official_title, :string
+    add_column :trials, :brief_summary, :string
+    add_column :trials, :detailed_description, :string
+    add_column :trials, :overall_status, :string
+    add_column :trials, :start_date, :string
+    add_column :trials, :study_type, :string
+    add_column :trials, :study_design, :string
+    add_column :trials, :primary_outcome_measure, :string
+    add_column :trials, :primary_outcome_time_frame, :string
+    add_column :trials, :primary_outcome_safety_issue, :string
+    add_column :trials, :secondary_outcome_measure, :string
+    add_column :trials, :secondary_outcome_time_frame, :string
+    add_column :trials, :secondary_outcome_safety_issue, :string
+    add_column :trials, :number_of_groups, :string
+    add_column :trials, :enrollment, :string
+    add_column :trials, :condition, :string
+    add_column :trials, :arm_group_label, :string
+    add_column :trials, :arm_group_description, :string
+    add_column :trials, :sampling_method, :string
+    add_column :trials, :gender, :string
+    add_column :trials, :healthy_volunteers, :string
+    add_column :trials, :overall_official_name, :string
+    add_column :trials, :overall_official_role, :string
+    add_column :trials, :overall_official_affiliation, :string
+    add_column :trials, :overall_contact_name, :string
+    add_column :trials, :overall_contact_phone, :string
+    add_column :trials, :overall_contact_email, :string
+    add_column :trials, :results_reference_citation, :string
+    add_column :trials, :results_reference_PMID, :string
+    add_column :trials, :verification_date, :string
+    add_column :trials, :lastchanged_date, :string
+    add_column :trials, :firstreceived_date, :string
+    add_column :trials, :responsible_party_type, :string
+    add_column :trials, :keyword, :string
+    add_column :trials, :is_fda_regulated, :string
+    add_column :trials, :has_expanded_access, :string
+    add_column :trials, :condition_browse_mesh_term, :string
+  end
+end

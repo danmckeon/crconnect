@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170428030039) do
+ActiveRecord::Schema.define(version: 20170502033440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,12 +18,12 @@ ActiveRecord::Schema.define(version: 20170428030039) do
   create_table "trials", force: :cascade do |t|
     t.string   "nct_id"
     t.string   "phase"
-    t.string   "sponsor_name"
-    t.string   "sponsor_type"
-    t.string   "study_title"
+    t.string   "lead_sponsor_name"
+    t.string   "lead_sponsor_class"
+    t.string   "brief_title"
     t.string   "cohort"
-    t.string   "age_min"
-    t.string   "age_max"
+    t.string   "minimum_age"
+    t.string   "maximum_age"
     t.string   "type_lung_nsclc_adeno"
     t.string   "type_lung_nsclc_large"
     t.string   "type_lung_nsclc_squamous"
@@ -51,6 +51,48 @@ ActiveRecord::Schema.define(version: 20170428030039) do
     t.text     "eligibility_criteria_text"
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
+    t.string   "org_study_id"
+    t.string   "secondary_id"
+    t.string   "nct_alias"
+    t.string   "official_title"
+    t.string   "brief_summary"
+    t.string   "detailed_description"
+    t.string   "overall_status"
+    t.string   "start_date"
+    t.string   "study_type"
+    t.string   "study_design"
+    t.string   "primary_outcome_measure"
+    t.string   "primary_outcome_time_frame"
+    t.string   "primary_outcome_safety_issue"
+    t.string   "secondary_outcome_measure"
+    t.string   "secondary_outcome_time_frame"
+    t.string   "secondary_outcome_safety_issue"
+    t.string   "number_of_groups"
+    t.string   "enrollment"
+    t.string   "condition"
+    t.string   "arm_group_label"
+    t.string   "arm_group_description"
+    t.string   "sampling_method"
+    t.string   "gender"
+    t.string   "healthy_volunteers"
+    t.string   "overall_official_name"
+    t.string   "overall_official_role"
+    t.string   "overall_official_affiliation"
+    t.string   "overall_contact_name"
+    t.string   "overall_contact_phone"
+    t.string   "overall_contact_email"
+    t.string   "results_reference_citation"
+    t.string   "results_reference_PMID"
+    t.string   "verification_date"
+    t.string   "lastchanged_date"
+    t.string   "firstreceived_date"
+    t.string   "responsible_party_type"
+    t.string   "keyword"
+    t.string   "is_fda_regulated"
+    t.string   "has_expanded_access"
+    t.string   "condition_browse_mesh_term"
+    t.string   "type_colorectal_adeno"
+    t.string   "type_colorectal_nonadeno"
   end
 
 end

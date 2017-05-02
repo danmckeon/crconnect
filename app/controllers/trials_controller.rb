@@ -77,8 +77,8 @@ class TrialsController < ApplicationController
 
   def age_filter(trials, user_age)
     trials.select do |trial|
-      min = trial[:age_min].to_i
-      max = trial[:age_max].to_i
+      min = trial[:minimum_age].to_i
+      max = trial[:maximum_age].to_i
       user = user_age.to_i
       min <= user && user < max
     end
