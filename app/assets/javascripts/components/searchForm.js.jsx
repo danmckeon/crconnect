@@ -74,7 +74,7 @@ class SearchForm extends React.Component {
             <div className="panel-heading">
               <div id="new-search"/>
               <h3 className="panel-title">
-                Search for Clinial Trials
+                Search for Clinical Trials
               </h3>
             </div>
             <div className="panel-body search-form-body">
