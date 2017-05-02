@@ -9,7 +9,7 @@ class TrialsController < ApplicationController
 
   private
   def trial_params
-    params.permit(:cancerSubType, :cancerStage, :cancerStatus, :geneticMarkers, :chemotherapy, :radiation, :age)
+    params.permit(:cancerType, :cancerSubType, :cancerStage, :cancerStatus, :geneticMarkers, :chemotherapy, :radiation, :age)
   end
 
   def parse_params
@@ -51,25 +51,27 @@ class TrialsController < ApplicationController
       query_params[:treatment_radiation] = ["exclude", nil]
     end
 
-    # case trial_params[:cancerStatus]
-    # when "status_newly_diagnosed"
-    #   query_params[:status_newly_diagnosed] = "include"
-    # when "status_relapse"
-    #   query_params[:negatives[:status_relapse]] = "exclude"
-    #   query_params[:negatives[:status_refractory]] = "require"
-    #   query_params[:negatives[:status_newly_diagnosed]] = "require"
-    # when "status_refractory"
-    #   query_params[:status_refractory] = "include"
-    # end
-    #
-    # case trial_params[:geneticMarkers] # RE-DO THIS
-    # when "marker_alk_oncogene"
-    #   query_params[:marker_alk_oncogene] = "include"
-    # when "marker_egfr_mutation"
-    #   query_params[:marker_egfr_mutation] = "include"
-    # when "marker_kras_mutation"
-    #   query_params[:marker_kras_mutation] = "include"
-    # end
+    case trial_params[:cancerStatus]
+    when "Never Received Treatment"
+      query_params[:status_newly_diagnosed] = ["require", nil]
+    when "Relapsed"
+      query_params[:status_relapse] = ["require", nil]
+    when "Refractory"
+      query_params[:status_refractory] = ["require", nil]
+    end
+
+    case trial_params[:geneticMarkers]
+    when "None"
+      query_params[:marker_alk_oncogene] = ["exclude", nil]
+      query_params[:marker_egfr_mutation] = ["exclude", nil]
+      query_params[:marker_kras_mutation] = ["exclude", nil]
+    when "ALK Oncogene"
+      query_params[:marker_alk_oncogene] = ["require", "require_alk_or_egfr", nil]
+    when "EGFR Mutation"
+      query_params[:marker_egfr_mutation] = ["require", "require_alk_or_egfr", nil]
+    when "KRAS Mutation"
+      query_params[:marker_kras_mutation] = ["require", nil]
+    end
     query_params
   end
 
@@ -78,7 +80,7 @@ class TrialsController < ApplicationController
       min = trial[:minimum_age].to_i
       max = trial[:maximum_age].to_i
       user = user_age.to_i
-      min < user && user < max
+      min <= user && user < max
     end
   end
 end

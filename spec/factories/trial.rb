@@ -21,6 +21,9 @@ FactoryGirl.define do
     maximum_age "150"
     type_lung_nsclc_adeno "include"
     stage_i "include"
+    status_relapse nil
+    status_refractory nil
+    status_newly_diagnosed nil
   end
   factory(:grumpy_submit, class: Trial) do
     nct_id "NCT01993810"
@@ -32,9 +35,58 @@ FactoryGirl.define do
     type_lung_nsclc_adeno "include"
     type_lung_nsclc_large "include"
     type_lung_nsclc_squamous "include"
-    type_lung_sclc "include" 
+    type_lung_sclc "include"
     stage_ii "include"
     stage_iii "include"
     treatment_chemo_systemic "exclude"
+    status_relapse nil
+    status_refractory nil
+    status_newly_diagnosed nil
+  end
+  factory(:submission, class: Trial) do
+    nct_id "NCT0199382111"
+    phase "Phase 3"
+    sponsor_name "Radiation Therapy Oncology Group"
+    sponsor_type "Other"
+    study_title "Study of the effects of the Phase on the status"
+    cohort "1"
+    age_min "18"
+    age_max "150"
+    type_lung_nsclc_adeno "include"
+    type_lung_nsclc_large "include"
+    type_lung_nsclc_squamous "include"
+    type_lung_sclc "include"
+    stage_ii "include"
+    stage_iii "include"
+    treatment_chemo_systemic "exclude"
+    status_relapse nil
+    status_refractory nil
+    status_newly_diagnosed nil
+    marker_egfr_mutation "exclude"
+    marker_kras_mutation nil
+    marker_alk_oncogene "exclude"
+  end
+  factory(:submission2, class: Trial) do
+    nct_id "NCT0199213812"
+    phase "Phase 3"
+    sponsor_name "Radiation Therapy Oncology Group"
+    sponsor_type "Other"
+    study_title "Very important study"
+    cohort "1"
+    age_min "18"
+    age_max "150"
+    type_lung_nsclc_adeno "include"
+    type_lung_nsclc_large "include"
+    type_lung_nsclc_squamous "include"
+    type_lung_sclc "include"
+    stage_ii "include"
+    stage_iii "include"
+    treatment_chemo_systemic "exclude"
+    status_relapse nil
+    status_refractory nil
+    status_newly_diagnosed nil
+    marker_egfr_mutation "require_alk_or_egfr"
+    marker_kras_mutation nil
+    marker_alk_oncogene nil
   end
 end
