@@ -135,20 +135,18 @@ create_upload_directories(parent_dir_path, zip_dir_path, xml_dir_path)
 # download zip file to directory and unzip to xmls
 download_zip_file(LONGER_SAMPLE_UPLOAD_URL, zip_dir_path, xml_dir_path)
 
-# Trial.destroy_all
+Trial.destroy_all
 
-# # parse xml files to Trial objects
+# parse xml files to Trial objects
 
-# Dir.glob(all_trial_xmls) do |xml_file|
-#   xml_file_noko = Nokogiri::XML(File.open(xml_file))
-#   save_trial_data(xml_file_noko)
-# end
+Dir.glob(all_trial_xmls) do |xml_file|
+  xml_file_noko = Nokogiri::XML(File.open(xml_file))
+  save_trial_data(xml_file_noko)
+end
 
-# lung_and_colo_csv = File.join(Rails.root, 'db', 'seed_data', 'lung_and_colo0.csv')
+lung_and_colo_csv = File.join(Rails.root, 'db', 'seed_data', 'lung_and_colo_test.csv')
 
-# CSV.foreach(lung_and_colo_csv, headers: true, encoding: 'BOM|UTF-8:UTF-8') do |row|
-#   trial = Trial.find_by(nct_id: row[0])
-#   trial.update_attributes(row.to_hash)
-#   p trial
-#   # POSSIBLY SAVE!
-# end
+CSV.foreach(lung_and_colo_csv, headers: true, encoding: 'BOM|UTF-8:UTF-8') do |row|
+  trial = Trial.find_by(nct_id: row[0])
+  trial.update_attributes(row.to_hash)
+end
