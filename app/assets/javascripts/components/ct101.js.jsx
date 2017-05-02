@@ -41,6 +41,9 @@ class CT101 extends React.Component {
       <h3>Clinical Trials 101</h3>
     );
     return(
+      <div className="row">
+        <div className="col-sm-1"/>
+        <Col sm={10}>
           <Panel header={panelTitle}>
             <Tab.Container id="left-tabs-example" defaultActiveKey="first">
               <Row className="clearfix">
@@ -85,6 +88,9 @@ class CT101 extends React.Component {
               </Row>
             </Tab.Container>
           </Panel>
+          </Col>
+          <div className="col-sm-1"/>
+        </div>
     )
   }
 }
