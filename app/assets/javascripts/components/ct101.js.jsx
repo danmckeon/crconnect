@@ -49,19 +49,19 @@ class CT101 extends React.Component {
               <Row className="clearfix">
                 <Col sm={4}>
                   <Nav bsStyle="pills" stacked>
-                    <NavItem eventKey="first">
+                    <NavItem eventKey="first" className="ct-question">
                       {this.headerText("q1")}
                     </NavItem>
-                    <NavItem eventKey="second">
+                    <NavItem eventKey="second" className="ct-question">
                       {this.headerText("q2")}
                     </NavItem>
-                    <NavItem eventKey="third">
+                    <NavItem eventKey="third" className="ct-question">
                       {this.headerText("q3")}
                     </NavItem>
-                    <NavItem eventKey="fourth">
+                    <NavItem eventKey="fourth" className="ct-question">
                       {this.headerText("q4")}
                     </NavItem>
-                    <NavItem eventKey="fifth">
+                    <NavItem eventKey="fifth" className="ct-question">
                       {this.headerText("q5")}
                     </NavItem>
                   </Nav>
