@@ -136,9 +136,9 @@ LYMPHOMA_UPLOAD_URL = %q[https://clinicaltrials.gov/ct2/results?term=&recr=Recru
 FULL_UPLOAD_URL = "https://clinicaltrials.gov/ct2/results?term=&recr=Recruiting&cntry1=NA%3AUS&studyxml=true"
 
 parent_dir_name = assign_parent_dir_name
-parent_dir_path = Rails.root.join('lib', 'data', parent_dir_name)
-zip_dir_path = Rails.root.join('lib', 'data', parent_dir_name, 'ZIP')
-xml_dir_path = Rails.root.join('lib', 'data', parent_dir_name, 'XML')
+parent_dir_path = Rails.root.join('tmp', 'data', parent_dir_name)
+zip_dir_path = Rails.root.join('tmp', 'data', parent_dir_name, 'ZIP')
+xml_dir_path = Rails.root.join('tmp', 'data', parent_dir_name, 'XML')
 all_trial_xmls = xml_dir_path + '*.xml'
 
 # create necessary directories for zip upload and extraction to xmls
