@@ -155,8 +155,12 @@ create_data_dir(data_dir_path)
 create_upload_directories(parent_dir_path, zip_dir_path, xml_dir_path)
 
 # download zip file to directory and unzip to xmls
-download_zip_file(LUNG_OR_COLO_OPEN_UPLOAD_URL, zip_dir_path, xml_dir_path)
-download_zip_file(LUNG_OR_COLO_ACTIVENR_UPLOAD_URL, zip_dir_path, xml_dir_path)
+
+# AAA: UNCOMMENT THESE TO RUN THE REAL THING!!!
+# download_zip_file(LUNG_OR_COLO_OPEN_UPLOAD_URL, zip_dir_path, xml_dir_path)
+# download_zip_file(LUNG_OR_COLO_ACTIVENR_UPLOAD_URL, zip_dir_path, xml_dir_path)
+
+download_zip_file(LONGER_SAMPLE_UPLOAD_URL, zip_dir_path, xml_dir_path)
 
 Trial.destroy_all
 
@@ -173,7 +177,7 @@ missing_trials = []
 
 CSV.foreach(lung_and_colo_csv, headers: true, encoding: 'BOM|UTF-8:UTF-8') do |row|
   if row[1] == "1"
-    trial = Trial.find_by(nct_id: row[0])  
+    trial = Trial.find_by(nct_id: row[0])
   else
     new_trial_path = xml_dir_path + (row[0] + '.xml')
     if File.exist? File.expand_path new_trial_path
