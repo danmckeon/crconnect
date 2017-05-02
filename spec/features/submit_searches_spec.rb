@@ -133,7 +133,6 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     select('No', from: 'radiation')
     select('KRAS Mutation', from: 'geneticMarkers')
     fill_in('age', with: '50')
-    sleep 2
     click_on('Find Trials')
     expect(page).to have_content("Fairly important study")
   end
@@ -147,7 +146,6 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     select('No', from: 'radiation')
     select('KRAS Mutation', from: 'geneticMarkers')
     fill_in('age', with: '50')
-    sleep 2
     click_on('Find Trials')
     expect(page).to have_content("Fairly important study")
   end
