@@ -1,0 +1,10 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div>
+      <a class="navbar-brand" href="/admin">
+        <img id="top-logo" alt="Brand" src="/crc_logo.png"/>
+      </a>
+    </div>
+      <% if session[:user_id] %>
+        <%= link_to "Logout", session_path(session[:user_id]), method: :delete, class: "btn btn-default navbar-text navbar-right logout" %>
+      <% end %>
+</nav>
