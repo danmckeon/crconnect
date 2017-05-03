@@ -7,6 +7,11 @@ class TrialsController < ApplicationController
     end
   end
 
+  def pending
+    @pending_trials = Trial.where(pending: true)
+    render :'admin/trials/pending'
+  end
+
   private
   def trial_params
     params.permit(:cancerType, :cancerSubType, :cancerStage, :cancerStatus, :geneticMarkers, :chemotherapy, :radiation, :age)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170503162346) do
+ActiveRecord::Schema.define(version: 20170503193155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(version: 20170503162346) do
     t.string   "condition_browse_mesh_term"
     t.string   "type_colorectal_adeno"
     t.string   "type_colorectal_nonadeno"
+    t.boolean  "pending"
   end
 
   create_table "users", force: :cascade do |t|
