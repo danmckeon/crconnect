@@ -6,4 +6,7 @@ Rails.application.routes.draw do
 
   get '/admin', to: 'sessions#new'
   resources :sessions, only: [:new, :create, :destroy]
+
+  get "/admin/trials/pending", to: "trials#pending"
+
 end
