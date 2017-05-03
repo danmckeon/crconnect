@@ -1,12 +1,27 @@
 
-  <div class = "inner">
-  <ul class='errors'></ul>
-  <!-- ADD REMOTE TRUE TO FORM BELOW TO AJAXIFY! -->
-  <%= form_for :session, url: sessions_path do |f| %>
-      <%= f.email_field :email, placeholder: "Email" %>
-      <%= f.password_field :password, placeholder: "Password" %>
+<div className="row">
+  <div className="col-sm-1" />
+  <div className="col-sm-10">
     <div>
-      <%= f.submit "Log In" %>
-    </div>
-  <% end %>
+    <div className="panel panel-default">
+      <div className="panel-heading">
+        <h3 className="panel-title">
+          Login
+        </h3>
+      </div>
+      <div className="panel-body">
+    <ul class='errors'></ul>
+    <%= form_for :session, url: sessions_path, class: "col-sm-10 form-signin" do |f| %>
+        <%= f.email_field :email, placeholder: "Email", required:"", autofocus:"", class:"form-control" %>
+        <%= f.password_field :password, placeholder: "Password", class:"form-control", required:"" %>
+      <div>
+        <%= f.submit "Log In", class:"btn btn-lg btn-primary btn-block" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+</div>
+</div>
+</div>
+    <div class="col-sm-1"></div>
   </div>
