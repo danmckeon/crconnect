@@ -1,5 +1,58 @@
 require 'csv'
 
+# LOAD SITES FROM CSV STORED IN SEED_DATA TO DB VIA SEEDS.RB
+
+def load_sites_from_csv(csv_path)
+  CSV.foreach(csv_path, headers: true, encoding: 'BOM|UTF-8:UTF-8') do |row|
+    trials = Trial.where(nct_id: row[0])
+    trials.each do |trial|
+      site = Site.create(row.to_hash.except('nct_id'))
+      trial.sites << site
+    end
+  end
+end
+
+################################################################################
+
+# FINDING TRIAL SITES FROM XML
+
+# Below method is for finding sites from xml files during Nokogiri scrape...
+# currently finding sites via csv file to retain latitude/longitude data
+
+def create_trial_sites_from_xml(trial_xml)
+  sites = []
+  trial_xml.xpath("//location").each do |site|
+    status = site.at("status").text if site.at("status")
+    country = site.at("country").text if site.at("country")
+    if status == "Recruiting" && (country == "United States" || country == "Canada")
+      new_site = Site.new
+      new_site.name = site.at("name").text if site.at("name")
+      new_site.city = site.at("city").text if site.at("city")
+      new_site.state = site.at("state").text if site.at("state")
+      new_site.zip = site.at("zip").text if site.at("zip")
+      new_site.country = country
+      new_site.status = status
+      new_site.contact_name = site.at("contact/last_name").text if site.at("contact/last_name")
+      new_site.contact_phone = site.at("contact/phone").text if site.at("contact/phone")
+      new_site.contact_phone_ext = site.at("contact/phone_ext").text if site.at("contact/phone_ext")
+      new_site.contact_email = site.at("contact/email").text if site.at("contact/email")
+      new_site.investigator_name = site.at("investigator/last_name").text if site.at("investigator/last_name")
+      new_site.investigator_role = site.at("investigator/role").text if site.at("investigator/role")
+      lat_long = find_lat_long({ zip: new_site.zip, city: new_site.city, state: new_site.state, country: new_site.country })
+      new_site.latitude = lat_long[0]
+      new_site.longitude = lat_long[1]
+      new_site.save
+      sites << new_site
+    end
+  end
+  sites
+end
+
+# Below method is for finding latitude and longitude via Geocoder, which uses
+# Google API. Note that it is easy to exceed query limit with query of this size.
+# As a result, we have saved sites in csv file relevant to current lung cancer
+# and colorectal cancer trials in database.
+
 def find_lat_long(sites)
   sites.each do |site|
     if site.zip
@@ -15,6 +68,12 @@ def find_lat_long(sites)
     site.save
   end
 end
+
+################################################################################
+
+# MISC HELPER METHODS
+
+# HELPERS TO UTILIZE FIND LAT/LONG FROM OTHER SITES IN DATABASE WITH SAME ZIP
 
 def find_lat_long_for_many_sites(missing_lat_long_sites)
   missing_lat_long_sites.each do |missing_lat_long_site|
@@ -36,11 +95,13 @@ def find_lat_long_for_individual_site(missing_lat_long_site)
   end
 end
 
+# HELPER FOR SAVING CURRENT SITE OBJECTS TO CSV
+
 # Uncomment only if needing to save to csv
-# sites_csv_path = Rails.root.join('db', 'seed_data', 'all_sites.csv')
+# sites_dest_csv_path = Rails.root.join('db', 'seed_data', 'all_sites.csv')
 
 def save_lat_long_to_csv(all_sites)
-  CSV.open(sites_csv_path, 'wb') do |csv|
+  CSV.open(sites_dest_csv_path, 'wb') do |csv|
     csv << ["nct_id", "name", "city", "state", "zip", "country", "status",
       "contact_name", "contact_phone", "contact_phone_ext", "contact_email",
       "investigator_name", "investigator_role", "latitude", "longitude"]
@@ -51,16 +112,6 @@ def save_lat_long_to_csv(all_sites)
           site.contact_phone_ext, site.contact_email, site.investigator_name,
           site.investigator_role, site.latitude, site.longitude]
       end
-    end
-  end
-end
-
-def load_sites_from_csv(csv_path)
-  CSV.foreach(csv_path, headers: true, encoding: 'BOM|UTF-8:UTF-8') do |row|
-    trials = Trial.where(nct_id: row[0])
-    trials.each do |trial|
-      site = Site.create(row.to_hash.except('nct_id'))
-      trial.sites << site
     end
   end
 end
