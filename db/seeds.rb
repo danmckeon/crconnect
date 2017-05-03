@@ -45,6 +45,46 @@ def clean_raw_age(raw_age, default_age)
   age
 end
 
+def find_lat_long(location_vars)
+  if location_vars[:zip]
+    location_input = location_vars[:zip]
+  elsif location_vars[:state]
+    location_input = "#{location_vars[:city]}, #{location_vars[:state]}"
+  else
+    location_input = "#{location_vars[:city]}, #{location_vars[:country]}"
+  end
+  Geocoder::Calculations.extract_coordinates(location_input)
+end
+
+def find_trial_sites(trial_xml)
+  sites = []
+  trial_xml.xpath("//location").each do |site|
+    status = site.at("status").text if site.at("status")
+    country = site.at("country").text if site.at("country")
+    if status == "Recruiting" && (country == "United States" || country == "Canada")
+      new_site = Site.new
+      new_site.name = site.at("name").text if site.at("name")
+      new_site.city = site.at("city").text if site.at("city")
+      new_site.state = site.at("state").text if site.at("state")
+      new_site.zip = site.at("zip").text if site.at("zip")
+      new_site.country = country
+      new_site.status = status
+      new_site.contact_name = site.at("contact/last_name").text if site.at("contact/last_name")
+      new_site.contact_phone = site.at("contact/phone").text if site.at("contact/phone")
+      new_site.contact_phone_ext = site.at("contact/phone_ext").text if site.at("contact/phone_ext")
+      new_site.contact_email = site.at("contact/email").text if site.at("contact/email")
+      new_site.investigator_name = site.at("investigator/last_name").text if site.at("investigator/last_name")
+      new_site.investigator_role = site.at("investigator/role").text if site.at("investigator/role")
+      lat_long = find_lat_long({ zip: new_site.zip, city: new_site.city, state: new_site.state, country: new_site.country })
+      new_site.latitude = lat_long[0]
+      new_site.longitude = lat_long[1]
+      new_site.save
+      sites << new_site
+    end
+  end
+  sites
+end
+
 def create_trial_from_xml(trial_xml)
   trial = Trial.new
   trial[:org_study_id] = trial_xml.xpath("//id_info//org_study_id").text
@@ -97,39 +137,6 @@ def create_trial_from_xml(trial_xml)
   trial
 end
 
-# USE EVENTUALLY FOR PARSING SITES
-
-# def parse_trial_sites(xml_file)
-#   @location_array = xml_file.xpath("//location").map { |location| location }
-#   @location_array.each do |entry|
-#     if (entry.at("country").text == "United States")
-#       @trial_site_record = TrialSite.new
-#       @trial_site_record[:site_name] = read_entry(entry, "name")
-#       @trial_site_record[:site_city] = read_entry(entry, "city")
-#       @trial_site_record[:site_state] = read_entry(entry, "state")
-#       @trial_site_record[:site_zip] = read_entry(entry, "zip")
-#       @trial_site_record[:site_county] = read_entry(entry, "country")
-#       @trial_site_record[:site_status] = read_entry(entry, "status")
-#       @trial_site_record.save
-#     end
-#   end
-# end
-
-# def read_entry(entry, tag)
-#   if entry.at(tag) != nil
-#     return entry.at(tag).text
-#   end
-# end
-
-# Populate trial sites
-
-#TARGET_FILE_PATH = '/Users/danmckeon/workspace/cancer_research_connect/lib/data/CTDOTGOV_UPLOAD_1476145970/XML/NCT02364999.xml'
-
-
-
-
-
-
 
 SHORT_SAMPLE_UPLOAD_URL = "https://clinicaltrials.gov/ct2/results?term=&recr=Recruiting&cntry1=NA%3AUS&cond=hand+cancer&studyxml=true"
 LONGER_SAMPLE_UPLOAD_URL = %q[https://clinicaltrials.gov/ct2/results?term=&recr=Recruiting&cntry1=NA%3AUS&cond="mouth+cancer"&studyxml=true]
@@ -159,6 +166,7 @@ download_zip_file(LUNG_OR_COLO_OPEN_UPLOAD_URL, zip_dir_path, xml_dir_path)
 download_zip_file(LUNG_OR_COLO_ACTIVENR_UPLOAD_URL, zip_dir_path, xml_dir_path)
 
 Trial.destroy_all
+Site.destroy_all
 
 # parse xml files to Trial objects
 
@@ -172,10 +180,10 @@ lung_and_colo_csv = File.join(Rails.root, 'db', 'seed_data', 'lung_and_colo.csv'
 missing_trials = []
 
 CSV.foreach(lung_and_colo_csv, headers: true, encoding: 'BOM|UTF-8:UTF-8') do |row|
+  new_trial_path = xml_dir_path + (row[0] + '.xml')
   if row[1] == "1"
-    trial = Trial.find_by(nct_id: row[0])  
+    trial = Trial.find_by(nct_id: row[0])
   else
-    new_trial_path = xml_dir_path + (row[0] + '.xml')
     if File.exist? File.expand_path new_trial_path
       xml_file_noko = Nokogiri::XML(File.open(new_trial_path))
       trial = create_trial_from_xml(xml_file_noko)
@@ -183,6 +191,8 @@ CSV.foreach(lung_and_colo_csv, headers: true, encoding: 'BOM|UTF-8:UTF-8') do |r
   end
   if trial
     trial.update_attributes(row.to_hash)
+    trial.sites = find_trial_sites(Nokogiri::XML(File.open(new_trial_path)))
+    trial.save
   else
     missing_trials << row[0]
   end
