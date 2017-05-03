@@ -148,6 +148,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     fill_in('age', with: '50')
     click_on('Find Trials')
     expect(page).to have_content("Fairly important study")
+    expect(page).to have_no_content("Zipcode")
     page.find(".trial-buttons").click
     expect(page).to have_content("More info")
   end
@@ -161,7 +162,9 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     select('No', from: 'radiation')
     select('Refractory', from: 'cancerStatus')
     fill_in('age', with: '50')
+    fill_in('zipcode', with: '98104')
     click_on('Find Trials')
+    expect(page).to have_content('98104')
     expect(page).to have_content("Your search did not match any trials.")
   end
 end
