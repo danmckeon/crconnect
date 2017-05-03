@@ -93,14 +93,6 @@ class SearchForm extends React.Component {
                     <option value="Colorectal&nbsp;Cancer&nbsp;(Adenocarcinoma)">Colorectal Cancer (Adenocarcinoma)</option>
                     <option value="Colorectal&nbsp;Cancer&nbsp;(Other&nbsp;types)">Colorectal Cancer (Other types)</option>
                   </select>
-                  {/* <label htmlFor="cancerSubType">Sub-Type</label>
-                  <select name="cancerSubType" className="form-control">
-                    <option value="Blank">(Please select sub-type)</option>
-                    <option value="Non-Small&nbsp;Cell&nbsp;Lung&nbsp;Cancer&nbsp;(Adenocarcinoma)">Non-Small Cell Lung Cancer (Adenocarcinoma)</option>
-                    <option value="Non-Small&nbsp;Cell&nbsp;Lung&nbsp;Cancer&nbsp;(Large&nbsp;Cell)">Non-Small Cell Lung Cancer (Large Cell)</option>
-                    <option value="Non-Small&nbsp;Cell&nbsp;Lung&nbsp;Cancer&nbsp;(Squamous)">Non-Small Cell Lung Cancer (Squamous)</option>
-                    <option value="Small&nbsp;Cell&nbsp;Lung&nbsp;Cancer">Small Cell Lung Cancer</option>
-                  </select> */}
                   <label htmlFor="cancerStage">Stage</label>
                   <select name="cancerStage" className="form-control">
                     <option value="Blank">(Please select stage)</option>
@@ -139,6 +131,8 @@ class SearchForm extends React.Component {
                   </select>
                   <label htmlFor="age">Age</label>
                   <input type="text" name="age" className="form-control" />
+                  <label htmlFor="zipcode">Zipcode</label>
+                  <input type="text" name="zipcode" className="form-control" />
                   <input type="submit" id="search-query-submit" className="form-control" value="Find Trials" />
                 </div>
               </form>
