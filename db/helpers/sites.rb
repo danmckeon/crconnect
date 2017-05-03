@@ -1,3 +1,7 @@
+############### DATABASE HELPER METHODS FOR SITES ##############################
+
+################################################################################
+
 require 'csv'
 
 # LOAD SITES FROM CSV STORED IN SEED_DATA TO DB VIA SEEDS.RB
@@ -14,7 +18,7 @@ end
 
 ################################################################################
 
-# FINDING TRIAL SITES FROM XML
+# FIND TRIAL SITES FROM XML
 
 # Below method is for finding sites from xml files during Nokogiri scrape...
 # currently finding sites via csv file to retain latitude/longitude data
@@ -73,7 +77,8 @@ end
 
 # MISC HELPER METHODS
 
-# HELPERS TO UTILIZE FIND LAT/LONG FROM OTHER SITES IN DATABASE WITH SAME ZIP
+# UTILIZE OTHER SITES IN DATABASE WITH SAME ZIP TO FIND LAT/LONG OF SITE OBJECTS
+# WITH MISSING LAT/LONG
 
 def find_lat_long_for_many_sites(missing_lat_long_sites)
   missing_lat_long_sites.each do |missing_lat_long_site|
@@ -95,7 +100,7 @@ def find_lat_long_for_individual_site(missing_lat_long_site)
   end
 end
 
-# HELPER FOR SAVING CURRENT SITE OBJECTS TO CSV
+# SAVING CURRENT SITE OBJECTS TO CSV
 
 # Uncomment only if needing to save to csv
 # sites_dest_csv_path = Rails.root.join('db', 'seed_data', 'all_sites.csv')
