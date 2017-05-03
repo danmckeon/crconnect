@@ -36,20 +36,31 @@ def find_lat_long_for_individual_site(missing_lat_long_site)
   end
 end
 
+# Uncomment only if needing to save to csv
+# sites_csv_path = Rails.root.join('db', 'seed_data', 'all_sites.csv')
+
 def save_lat_long_to_csv(all_sites)
-  CSV.open(Rails.root.join('db', 'seed_data', 'all_sites.csv'), 'wb') do |csv|
+  CSV.open(sites_csv_path, 'wb') do |csv|
     csv << ["nct_id", "name", "city", "state", "zip", "country", "status",
       "contact_name", "contact_phone", "contact_phone_ext", "contact_email",
       "investigator_name", "investigator_role", "latitude", "longitude"]
-    if !site.latitude.nan?
-      all_sites.each do |site|
-        if site.trial
-          csv << [site.trial.nct_id, site.name, site.city, site.state, site.zip,
-            site.country, site.status, site.contact_name, site.contact_phone,
-            site.contact_phone_ext, site.contact_email, site.investigator_name,
-            site.investigator_role, site.latitude, site.longitude]
-        end
+    all_sites.each do |site|
+      if site.trial && !site.latitude.nan?
+        csv << [site.trial.nct_id, site.name, site.city, site.state, site.zip,
+          site.country, site.status, site.contact_name, site.contact_phone,
+          site.contact_phone_ext, site.contact_email, site.investigator_name,
+          site.investigator_role, site.latitude, site.longitude]
       end
+    end
+  end
+end
+
+def load_sites_from_csv(csv_path)
+  CSV.foreach(csv_path, headers: true, encoding: 'BOM|UTF-8:UTF-8') do |row|
+    trials = Trial.where(nct_id: row[0])
+    trials.each do |trial|
+      site = Site.create(row.to_hash.except('nct_id'))
+      trial.sites << site
     end
   end
 end
