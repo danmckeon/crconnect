@@ -45,24 +45,39 @@ def clean_raw_age(raw_age, default_age)
   age
 end
 
+def find_lat_long(location_vars)
+  if location_vars[:zip]
+    location_input = location_vars[:zip]
+  elsif location_vars[:state]
+    location_input = "#{location_vars[:city]}, #{location_vars[:state]}"
+  else
+    location_input = "#{location_vars[:city]}, #{location_vars[:country]}"
+  end
+  Geocoder::Calculations.extract_coordinates(location_input)
+end
+
 def find_trial_sites(trial_xml)
   sites = []
   trial_xml.xpath("//location").each do |site|
     status = site.at("status").text if site.at("status")
-    if status == "Recruiting"
+    country = site.at("country").text if site.at("country")
+    if status == "Recruiting" && (country == "United States" || country == "Canada")
       new_site = Site.new
       new_site.name = site.at("name").text if site.at("name")
       new_site.city = site.at("city").text if site.at("city")
       new_site.state = site.at("state").text if site.at("state")
       new_site.zip = site.at("zip").text if site.at("zip")
-      new_site.country = site.at("country").text if site.at("country")
-      new_site.status = site.at("status").text if site.at("status")
+      new_site.country = country
+      new_site.status = status
       new_site.contact_name = site.at("contact/last_name").text if site.at("contact/last_name")
       new_site.contact_phone = site.at("contact/phone").text if site.at("contact/phone")
       new_site.contact_phone_ext = site.at("contact/phone_ext").text if site.at("contact/phone_ext")
       new_site.contact_email = site.at("contact/email").text if site.at("contact/email")
       new_site.investigator_name = site.at("investigator/last_name").text if site.at("investigator/last_name")
       new_site.investigator_role = site.at("investigator/role").text if site.at("investigator/role")
+      lat_long = find_lat_long({ zip: new_site.zip, city: new_site.city, state: new_site.state, country: new_site.country })
+      new_site.latitude = lat_long[0]
+      new_site.longitude = lat_long[1]
       new_site.save
       sites << new_site
     end
@@ -147,7 +162,6 @@ create_data_dir(data_dir_path)
 create_upload_directories(parent_dir_path, zip_dir_path, xml_dir_path)
 
 # download zip file to directory and unzip to xmls
-
 download_zip_file(LUNG_OR_COLO_OPEN_UPLOAD_URL, zip_dir_path, xml_dir_path)
 download_zip_file(LUNG_OR_COLO_ACTIVENR_UPLOAD_URL, zip_dir_path, xml_dir_path)
 
