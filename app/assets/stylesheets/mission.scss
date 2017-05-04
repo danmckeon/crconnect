@@ -117,5 +117,10 @@ p.alert-danger {
   padding: 3px;
   margin: 7px auto;
   width: 330px;
+}
 
+@media screen and (max-width: 450px) {
+  p.alert-danger {
+    width: 100%;
+  }
 }
