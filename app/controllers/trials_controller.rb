@@ -13,7 +13,7 @@ class TrialsController < ApplicationController
   end
 
   def approve
-
+    @trial = Trial.find(params[:id])
     render :'admin/trials/show'
   end
 
