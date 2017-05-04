@@ -2,7 +2,8 @@ class TrialsController < ApplicationController
   def index
     trials = Trial.where(parse_params)
     trials = age_filter(trials, trial_params[:age])
-    trials = zip_filter(trials, trial_params[:zipcode])
+    trials = trials.uniq { |trial| trial.nct_id }
+    trials = zip_sort(trials, trial_params[:zipcode])
     respond_to do |format|
       format.json { render json: trials }
     end
@@ -96,9 +97,9 @@ class TrialsController < ApplicationController
     end
   end
 
-  def zip_filter(trials, user_zip)
-    trials_within_range = []
+  def zip_sort(trials, user_zip)
     user_coords = Geocoder::Calculations.extract_coordinates(user_zip)
+    trials_within_range = []
     trials.each do |trial|
       trial.sites.each do |site|
         site_coords = [site.latitude, site.longitude]
