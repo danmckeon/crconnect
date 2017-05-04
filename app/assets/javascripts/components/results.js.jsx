@@ -11,7 +11,7 @@ class Results extends React.Component {
       url: "/trials",
       data: queryData,
     }).done((response) => {
-      this.setState({trials: response});
+      this.setState({trials: response.responseText});
     })
   };
   render () {
