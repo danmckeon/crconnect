@@ -12,11 +12,12 @@ class Results extends React.Component {
       data: queryData,
     }).done((response) => {
       this.setState({trials: response});
+      window.location = '/#top';
     })
   };
   render () {
     return(
-      <div className="container">
+      <div className="container" id="results-content">
         <div className="row">
           <div className="col-sm-1" />
         	<div className="col-sm-10">

@@ -10,7 +10,7 @@ class NavBar extends React.Component {
 
           <div>
             <a className="navbar-brand" href="/">
-              <img id="top-logo" alt="Brand" src="crc_logo.png"/>
+              <img id="top-logo" alt="Brand" src="crc_logo.png" className="img-responsive"/>
             </a>
           </div>
         </div>

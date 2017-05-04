@@ -22,7 +22,7 @@ class Footer extends React.Component {
           </div>
           <div className="col-sm-2"></div>
         </div>
-      </footer>
+    </footer>
     )
   };
 };
