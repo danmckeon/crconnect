@@ -48,6 +48,7 @@ RSpec.feature "Form Validators", type: :feature, js: true do
     select('Stage II', from: 'cancerStage')
     select('No', from: 'radiation')
     fill_in('age', with: '25')
+    fill_in('zipcode', with: '98117')
     click_on('Find Trials')
     expect(page).to have_content('Please select an option for Cancer Type')
     expect(page).to have_content('Please select an option for Chemotherapy')
