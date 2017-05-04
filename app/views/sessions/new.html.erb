@@ -1,0 +1,20 @@
+<%= render 'partials/navbar' %>
+<div class="row wrapper">
+    <div class="panel form-signin">
+      <div class="panel-heading login-heading">
+        <h3 class="panel-title">
+          CRC Admin Portal
+        </h3>
+      </div>
+      <div class="panel-body">
+        <%= form_for :session, url: sessions_path, class: "col-sm-10 " do |f| %>
+          <%= f.email_field :email, placeholder: "Email", required:"", autofocus:"", class:"form-control login-email" %>
+          <%= f.password_field :password, placeholder: "Password", class:"form-control login-password", required:"" %>
+          <div>
+            <%= f.submit "Log In", class:"btn btn-lg btn-primary btn-block" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,7 @@
+nav {
+  max-height: 70px;
+}
+
 img {
   width: 80px;
   display: inline-block;
@@ -15,4 +19,8 @@ button#search-button {
 
 #top-logo {
   padding-bottom: 15px;
+}
+
+.navbar-brand {
+  margin-bottom: 1.5%;
 }

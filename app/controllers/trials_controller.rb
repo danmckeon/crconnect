@@ -8,8 +8,12 @@ class TrialsController < ApplicationController
   end
 
   def pending
-    @pending_trials = Trial.where(pending: true)
-    render :'admin/trials/pending'
+    if session[:user_id]
+      @pending_trials = Trial.where(pending: true)
+      render :'admin/trials/pending'
+    else
+      redirect_to new_session_path
+    end
   end
 
   private
