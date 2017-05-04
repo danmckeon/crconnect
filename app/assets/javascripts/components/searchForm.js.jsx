@@ -93,7 +93,7 @@ class SearchForm extends React.Component {
                   <select name="cancerType" className="form-control">
                     <option value="Blank">(Please select type)</option>
                     <option disabled="disabled" value="Lung&nbsp;Cancer">---------------------Lung---------------------</option>
-                    <option value="Non-Small&nbsp;Cell&nbsp;Lung&nbsp;Cancer&nbsp;(Adenocarcinoma)">Non-Small Cell Lung Cancer (Adenocarcinoma)</option>
+                    <option value="Non-Small Cell Lung Cancer (Adenocarcinoma)">Non-Small Cell Lung Cancer (Adenocarcinoma)</option>
                     <option value="Non-Small&nbsp;Cell&nbsp;Lung&nbsp;Cancer&nbsp;(Large&nbsp;Cell)">Non-Small Cell Lung Cancer (Large Cell)</option>
                     <option value="Non-Small&nbsp;Cell&nbsp;Lung&nbsp;Cancer&nbsp;(Squamous)">Non-Small Cell Lung Cancer (Squamous)</option>
                     <option value="Small&nbsp;Cell&nbsp;Lung&nbsp;Cancer">Small Cell Lung Cancer</option>
