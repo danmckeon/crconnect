@@ -5,7 +5,11 @@ body {
 
 .app {
   margin-top: 100px;
-  background-image: url(/crc_logo_square.png);
+  background-image: url(/crc_logo_square_faded_smaller_gray.png);
+}
+
+.app::before {
+
 }
 
 
