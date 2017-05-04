@@ -11,8 +11,10 @@ class Results extends React.Component {
       url: "/trials",
       data: queryData,
     }).done((response) => {
-      this.setState({trials: response.responseText});
-    })
+      this.setState({trials: response});
+    }).fail((response) => {
+      this.props.zipHandler(response.responseJSON)
+    });
   };
   render () {
     return(

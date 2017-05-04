@@ -3,16 +3,19 @@ class TrialsController < ApplicationController
     trials = Trial.where(parse_params)
     user_coords = Geocoder::Calculations.extract_coordinates(trial_params[:zipcode])
     if user_coords[0].nan? || user_coords[1].nan?
+      p "NAN ROUTE HITTTTTTTTTTT"
       respond_to do |format|
-        status 400
-        format.json { render error: 'Please enter a valid zip code' }
+        format.json { render json: {
+          zipError: 'Please enter a valid zip code'
+          }, status: 400}
       end
-    end
-    trials = age_filter(trials, trial_params[:age])
-    trials = trials.uniq { |trial| trial.nct_id }
-    trials = zip_sort(trials, user_coords)
-    respond_to do |format|
-      format.json { render json: trials }
+    else
+      trials = age_filter(trials, trial_params[:age])
+      trials = trials.uniq { |trial| trial.nct_id }
+      trials = zip_sort(trials, user_coords)
+      respond_to do |format|
+        format.json { render json: trials }
+      end
     end
   end
 
