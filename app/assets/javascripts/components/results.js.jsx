@@ -21,8 +21,8 @@ class Results extends React.Component {
         <div className="row">
           <div className="col-sm-1" />
         	<div className="col-sm-10">
-            <div className="panel panel-default">
-              <div className="panel-heading">
+            <div className="panel panel-default panel-search-results">
+              <div className="panel-heading search-results-heading">
                 <ResultsHeader query={this.props.query}/>
               </div>
               <div className="panel-body">
