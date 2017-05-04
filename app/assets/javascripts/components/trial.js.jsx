@@ -5,13 +5,13 @@ class Trial extends React.Component {
   }
 
   _toggleDiv() {
-    $(`#${this.props.trial.id}`).slideToggle()
+    $(`#${this.props.trialSite.trial.id}`).slideToggle()
   }
 
   checkContact() {
-    const contactName = this.props.trial.overall_contact_name;
-    const contactPhone = this.props.trial.overall_contact_phone;
-    const contactEmail = this.props.trial.overall_contact_email;
+    const contactName = this.props.trialSite.trial.overall_contact_name;
+    const contactPhone = this.props.trialSite.trial.overall_contact_phone;
+    const contactEmail = this.props.trialSite.trial.overall_contact_email;
 
     if (contactName !== "") {
       return (
@@ -25,9 +25,9 @@ class Trial extends React.Component {
   }
 
   render() {
-    const briefTitle = this.props.trial.brief_title;
-    const studyId = this.props.trial.id;
-    const recruitingStatus = this.props.trial.overall_status;
+    const briefTitle = this.props.trialSite.trial.brief_title;
+    const studyId = this.props.trialSite.trial.id;
+    const recruitingStatus = this.props.trialSite.trial.overall_status;
 
     return (
       <td>
@@ -39,7 +39,7 @@ class Trial extends React.Component {
             </li>
             {this.checkContact()}
             <li>
-              <a href={`https://clinicaltrials.gov/ct2/show/${this.props.trial.nct_id}`}>More info</a>
+              <a href={`https://clinicaltrials.gov/ct2/show/${this.props.trialSite.trial.nct_id}`}>More info</a>
             </li>
           </ul>
         </div>

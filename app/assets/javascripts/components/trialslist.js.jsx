@@ -5,7 +5,7 @@ class TrialsList extends React.Component {
     } else if (queryResults.length === 0){
       return (<tr><td>Your search did not match any trials.</td></tr>)
     } else {
-      return (queryResults.map((trialSite) => {return(<tr key={trialSite.trial.id}><Trial trial={trialSite.trial} /></tr>)}))
+      return (queryResults.map((trialSite) => {return(<tr key={trialSite.trial.id}><Trial trialSite={trialSite} /></tr>)}))
     }
   }
   render () {
