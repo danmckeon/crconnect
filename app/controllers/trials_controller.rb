@@ -2,6 +2,7 @@ class TrialsController < ApplicationController
   def index
     trials = Trial.where(parse_params)
     trials = age_filter(trials, trial_params[:age])
+    trials = zip_filter(trials, trial_params[:zipcode])
     respond_to do |format|
       format.json { render json: trials }
     end
@@ -14,7 +15,8 @@ class TrialsController < ApplicationController
 
   private
   def trial_params
-    params.permit(:cancerType, :cancerSubType, :cancerStage, :cancerStatus, :geneticMarkers, :chemotherapy, :radiation, :age)
+    params.permit(:cancerType, :cancerSubType, :cancerStage, :cancerStatus,
+    :geneticMarkers, :chemotherapy, :radiation, :age, :zipcode)
   end
 
   def parse_params
@@ -92,5 +94,21 @@ class TrialsController < ApplicationController
       user = user_age.to_i
       min <= user && user < max
     end
+  end
+
+  def zip_filter(trials, user_zip)
+    trials_within_range = []
+    user_coords = Geocoder::Calculations.extract_coordinates(user_zip)
+    trials.each do |trial|
+      trial.sites.each do |site|
+        site_coords = [site.latitude, site.longitude]
+        if !trials_within_range.include?(trial) && Geocoder::Calculations.distance_between(user_coords, site_coords) < 50
+          p Geocoder::Calculations.distance_between(user_coords, site_coords)
+          p site
+          trials_within_range << trial
+        end
+      end
+    end
+    trials_within_range
   end
 end
