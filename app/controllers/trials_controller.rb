@@ -12,6 +12,12 @@ class TrialsController < ApplicationController
     render :'admin/trials/pending'
   end
 
+  def approve
+  end
+
+  def update
+  end
+
   private
   def trial_params
     params.permit(:cancerType, :cancerSubType, :cancerStage, :cancerStatus, :geneticMarkers, :chemotherapy, :radiation, :age)
