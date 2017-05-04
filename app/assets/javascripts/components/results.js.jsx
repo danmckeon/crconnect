@@ -31,7 +31,7 @@ class Results extends React.Component {
             <div className="panel panel-default panel-search-results">
               <div className="panel-heading search-results-heading">
                 <h3 className="panel-title results-title">
-                  Showing clinical trials for {this.formatCancerType(this.props.query.cancerType)} sorted by distance from you:
+                  {this.formatCancerType(this.props.query.cancerType)} clinical trials sorted by distance from you:
                 </h3>
                 <ResultsHeader query={this.props.query} />
               </div>
