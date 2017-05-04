@@ -1,8 +1,5 @@
 class TrialsController < ApplicationController
   def index
-    p "="*40
-    p params
-    p "="*40
     trials = Trial.where(parse_params)
     user_coords = Geocoder::Calculations.extract_coordinates(trial_params[:zipcode])
     if user_coords[0].nan? || user_coords[1].nan?
@@ -43,16 +40,15 @@ class TrialsController < ApplicationController
     case trial_params[:cancerType]
     when "Non-Small+Cell+Lung+Cancer+(Adenocarcinoma)"
       query_params[:type_lung_nsclc_adeno] = "include"
-    when "Non-Small Cell Lung Cancer (Large Cell)"
-      p "WE HIT IT"
+    when "Non-Small+Cell+Lung+Cancer+(Large+Cell)"
       query_params[:type_lung_nsclc_large] = "include"
-    when "Non-Small Cell Lung Cancer (Squamous)"
+    when "Non-Small+Cell+Lung+Cancer+(Squamous)"
       query_params[:type_lung_nsclc_squamous] = "include"
-    when "Small Cell Lung Cancer"
+    when "Small+Cell+Lung+Cancer"
       query_params[:type_lung_sclc] = "include"
-    when "Colorectal Cancer (Adenocarcinoma)"
+    when "Colorectal+Cancer+(Adenocarcinoma)"
       query_params[:type_colorectal_adeno] = "include"
-    when "Colorectal Cancer (Other types)"
+    when "Colorectal+Cancer+(Other+types)"
       query_params[:type_colorectal_nonadeno] = "include"
     end
 
