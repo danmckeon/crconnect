@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'index#index'
   resources :index, only: :index
-  resources :trials, only: [:index, :show]
+  resources :trials, only: [:index, :show, :update]
   resources :users
 
   get '/admin', to: 'sessions#new'

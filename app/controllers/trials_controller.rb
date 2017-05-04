@@ -1,4 +1,5 @@
 class TrialsController < ApplicationController
+  helper :all
   def index
     trials = Trial.where(parse_params)
     trials = age_filter(trials, trial_params[:age])
@@ -18,6 +19,7 @@ class TrialsController < ApplicationController
 
   def approve
     @trial = Trial.find(params[:id])
+
     render :'admin/trials/show'
   end
 
