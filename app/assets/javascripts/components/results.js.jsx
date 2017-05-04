@@ -18,6 +18,10 @@ class Results extends React.Component {
       this.props.zipHandler(response.responseJSON)
     });
   };
+
+  formatCancerType(rawInput){
+    return rawInput.split("+").join(" ")
+  }
   render () {
     return(
       <div className="container" id="results-content">
@@ -26,7 +30,10 @@ class Results extends React.Component {
         	<div className="col-sm-10">
             <div className="panel panel-default panel-search-results">
               <div className="panel-heading search-results-heading">
-                <ResultsHeader query={this.props.query}/>
+                <h3 className="panel-title results-title">
+                  {this.formatCancerType(this.props.query.cancerType)} clinical trials sorted by distance from you:
+                </h3>
+                <ResultsHeader query={this.props.query} />
               </div>
 
               <div className="panel-body">

@@ -13,7 +13,7 @@ class TrialsList extends React.Component {
 
     return(
       <table className="table table-hover table-bordered table-responsive">
-        <tbody>
+        <tbody className="trials-list-content">
           {trials}
         </tbody>
       </table>

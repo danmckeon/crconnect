@@ -38,17 +38,17 @@ class TrialsController < ApplicationController
 
 
     case trial_params[:cancerType]
-    when "Non-Small Cell Lung Cancer (Adenocarcinoma)"
+    when "Non-Small+Cell+Lung+Cancer+(Adenocarcinoma)"
       query_params[:type_lung_nsclc_adeno] = "include"
-    when "Non-Small Cell Lung Cancer (Large Cell)"
+    when "Non-Small+Cell+Lung+Cancer+(Large+Cell)"
       query_params[:type_lung_nsclc_large] = "include"
-    when "Non-Small Cell Lung Cancer (Squamous)"
+    when "Non-Small+Cell+Lung+Cancer+(Squamous)"
       query_params[:type_lung_nsclc_squamous] = "include"
-    when "Small Cell Lung Cancer"
+    when "Small+Cell+Lung+Cancer"
       query_params[:type_lung_sclc] = "include"
-    when "Colorectal Cancer (Adenocarcinoma)"
+    when "Colorectal+Cancer+(Adenocarcinoma)"
       query_params[:type_colorectal_adeno] = "include"
-    when "Colorectal Cancer (Other types)"
+    when "Colorectal+Cancer+(Other+types)"
       query_params[:type_colorectal_nonadeno] = "include"
     end
 

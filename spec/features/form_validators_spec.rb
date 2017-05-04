@@ -55,7 +55,7 @@ RSpec.feature "Form Validators", type: :feature, js: true do
     select('Colorectal Cancer (Other types)', from: 'cancerType')
     select('No', from: 'chemotherapy')
     click_on('Find Trials')
-    expect(page).to have_content('Showing clinical trials for')
+    expect(page).to have_content('clinical trials sorted by distance from you')
   end
 
   scenario "show zip error when user leaves zip blank" do
@@ -101,6 +101,6 @@ RSpec.feature "Form Validators", type: :feature, js: true do
     fill_in('age', with: '25')
     fill_in('zipcode', with: '98117')
     click_on('Find Trials')
-    expect(page).to have_content('Showing clinical trials for')
+    expect(page).to have_content('clinical trials sorted by distance from you')
   end
 end
