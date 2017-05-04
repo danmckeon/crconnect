@@ -16,7 +16,7 @@ class NavBar extends React.Component {
         </div>
         <div className="col-md-6">
           <div className="nav navbar-nav navbar-right">
-            <button type="button" id="search-button" className="btn btn-default navbar-btn" onClick={(e) => this.onClick(e)}>Search for Clinical Trials</button>
+            <button type="button" id="search-button" className="btn btn-default navbar-btn" onClick={(e) => this.onClick(e)}>Search for<br></br> Clinical Trials</button>
           </div>
         </div>
       </nav>
