@@ -9,7 +9,7 @@ RSpec.describe User, type: :model do
     end
 
     it "does not add a user to the database when created with bad params" do
-      expect {bad_user}.to raise_error
+      expect {bad_user}.to raise_error("Validation failed: Email can't be blank")
     end
   end
 end

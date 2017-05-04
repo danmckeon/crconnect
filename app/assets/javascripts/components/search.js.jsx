@@ -10,7 +10,7 @@ class Search extends React.Component {
         <Mission />
         <CT101 />
         <FDAProcess />
-        <SearchForm onSubmit={(query) => this.onSubmit(query)}/>
+        <SearchForm zipError = {this.props.zipError} onSubmit={(query) => this.onSubmit(query)}/>
       </div>
     )
   }
