@@ -239,6 +239,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     fill_in('age', with: '50')
     fill_in('zipcode', with: '98117')
     click_on('Find Trials')
+    sleep 1
     expect(page.text).to match(/Phase III Randomized Trial Comparing Overall.*Study of the effects of the Phase on the status/)
   end
 end
