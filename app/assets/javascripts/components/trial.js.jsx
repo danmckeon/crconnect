@@ -8,17 +8,18 @@ class Trial extends React.Component {
     $(`#${this.props.trialSite.trial.id}`).slideToggle()
   }
 
-  checkContact() {
+  checkContact(site) {
     const contactName = this.props.trialSite.trial.overall_contact_name;
     const contactPhone = this.props.trialSite.trial.overall_contact_phone;
     const contactEmail = this.props.trialSite.trial.overall_contact_email;
 
-    if (contactName !== "") {
+    if (site.contact_name) {
       return (
         <li>
-          Contact info: <br/>
-            {contactName} <br/>
-            {contactPhone}  {contactEmail}
+          Contact Info: <br/>
+            {site.contact_name} <br/>
+            {site.contact_phone} <br />
+            {site. contact_email}
         </li>
       )
     }
@@ -28,6 +29,8 @@ class Trial extends React.Component {
     const briefTitle = this.props.trialSite.trial.brief_title;
     const studyId = this.props.trialSite.trial.id;
     const recruitingStatus = this.props.trialSite.trial.overall_status;
+    const site = this.props.trialSite.site
+    const distance = this.props.trialSite.distance
 
     return (
       <td>
@@ -35,9 +38,15 @@ class Trial extends React.Component {
         <div className="trial-details" id={studyId}>
           <ul>
             <li>
-              Currently {recruitingStatus}
+              Currently {site.status}
             </li>
-            {this.checkContact()}
+            <li>
+              Closest Clinical Trial Site ({distance.toFixed(2)} miles away): <br />
+              {site.name} <br />
+              {site.city}, {site.state} {site.zip}
+            </li>
+
+            {this.checkContact(site)}
             <li>
               <a href={`https://clinicaltrials.gov/ct2/show/${this.props.trialSite.trial.nct_id}`}>More info</a>
             </li>
