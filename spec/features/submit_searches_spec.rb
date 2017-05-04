@@ -17,6 +17,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     select('No', from: 'chemotherapy')
     select('No', from: 'radiation')
     fill_in('age', with: '25')
+    fill_in('zipcode', with: '98117')
     click_on('Find Trials')
     expect(page).to have_content('Showing clinical trials for')
   end
@@ -29,6 +30,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     select('Yes', from: 'chemotherapy')
     select('Yes', from: 'radiation')
     fill_in('age', with: '16')
+    fill_in('zipcode', with: '98117')
     click_on('Find Trials')
     expect(page).to have_content('Showing clinical trials for')
   end
@@ -42,6 +44,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     select('No', from: 'radiation')
     select('Refractory', from: 'cancerStatus')
     fill_in('age', with: '50')
+    fill_in('zipcode', with: '98117')
     click_on('Find Trials')
     expect(page).to have_content("Randomized Phase II")
   end
@@ -68,6 +71,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     select('No', from: 'radiation')
     select('Relapsed', from: 'cancerStatus')
     fill_in('age', with: '50')
+    fill_in('zipcode', with: '98117')
     click_on('Find Trials')
     expect(page).to have_content("Phase III Randomized Trial")
   end
@@ -81,6 +85,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     select('No', from: 'radiation')
     select('None', from: 'geneticMarkers')
     fill_in('age', with: '50')
+    fill_in('zipcode', with: '98117')
     click_on('Find Trials')
     expect(page).to have_content("Study of the effects of the Phase on the status")
   end
@@ -94,6 +99,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     select('No', from: 'radiation')
     select('ALK Oncogene', from: 'geneticMarkers')
     fill_in('age', with: '50')
+    fill_in('zipcode', with: '98117')
     click_on('Find Trials')
     expect(page).to have_content("Very important study")
   end
@@ -107,6 +113,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     select('No', from: 'radiation')
     select('EGFR Mutation', from: 'geneticMarkers')
     fill_in('age', with: '50')
+    fill_in('zipcode', with: '98117')
     click_on('Find Trials')
     expect(page).to have_content("Very important study")
   end
@@ -120,6 +127,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     select('No', from: 'radiation')
     select('KRAS Mutation', from: 'geneticMarkers')
     fill_in('age', with: '50')
+    fill_in('zipcode', with: '98117')
     click_on('Find Trials')
     expect(page).to have_content("Very important study")
   end
@@ -133,6 +141,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     select('No', from: 'radiation')
     select('KRAS Mutation', from: 'geneticMarkers')
     fill_in('age', with: '50')
+    fill_in('zipcode', with: '98117')
     click_on('Find Trials')
     expect(page).to have_content("Fairly important study")
   end
@@ -146,6 +155,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     select('No', from: 'radiation')
     select('KRAS Mutation', from: 'geneticMarkers')
     fill_in('age', with: '50')
+    fill_in('zipcode', with: '98117')
     click_on('Find Trials')
     expect(page).to have_content("Fairly important study")
     expect(page).to have_no_content("Zipcode")

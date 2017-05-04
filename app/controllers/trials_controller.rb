@@ -3,7 +3,6 @@ class TrialsController < ApplicationController
     trials = Trial.where(parse_params)
     user_coords = Geocoder::Calculations.extract_coordinates(trial_params[:zipcode])
     if user_coords[0].nan? || user_coords[1].nan?
-      p "NAN ROUTE HITTTTTTTTTTT"
       respond_to do |format|
         format.json { render json: {
           zipError: 'Please enter a valid zip code'
