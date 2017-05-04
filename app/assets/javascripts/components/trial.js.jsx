@@ -9,9 +9,6 @@ class Trial extends React.Component {
   }
 
   checkContact(site) {
-    const contactName = this.props.trialSite.trial.overall_contact_name;
-    const contactPhone = this.props.trialSite.trial.overall_contact_phone;
-    const contactEmail = this.props.trialSite.trial.overall_contact_email;
 
     if (site.contact_name) {
       return (
@@ -19,22 +16,25 @@ class Trial extends React.Component {
           Contact Info: <br/>
             {site.contact_name} <br/>
             {site.contact_phone} <br />
-            {site. contact_email}
+            {site.contact_email}
         </li>
       )
     }
   }
 
   render() {
-    const briefTitle = this.props.trialSite.trial.brief_title;
     const studyId = this.props.trialSite.trial.id;
-    const recruitingStatus = this.props.trialSite.trial.overall_status;
-    const site = this.props.trialSite.site
-    const distance = this.props.trialSite.distance
+    const recruitingStatus = this.props.trialSite.trial.overall_status;;
+    const trial = this.props.trialSite.trial;
+    const site = this.props.trialSite.site;
+    const distance = this.props.trialSite.distance;
 
     return (
       <td>
-        <a onClick={this._toggleDiv} className="trial-buttons" >{briefTitle}</a>
+        <div onClick={this._toggleDiv} className="trial-buttons" >
+          <a>Location: {site.name}</a><br />
+          <a>Trial: {trial.brief_title.substring(0, 100)}...</a>
+        </div>
         <div className="trial-details" id={studyId}>
           <ul>
             <li>
