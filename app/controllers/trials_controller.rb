@@ -110,6 +110,6 @@ class TrialsController < ApplicationController
       min_distance_trial_site = trial_sites.min_by { |site| site[:distance] }
       trial_sites_sorted << min_distance_trial_site if min_distance_trial_site != nil
     end
-    p trial_sites_sorted.sort_by { |trial_site| trial_site[:distance] }
+    trial_sites_sorted.sort_by { |trial_site| trial_site[:distance] }
   end
 end
