@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :index, only: :index
 
   get "/admin/trials/pending", to: "trials#pending"
+  get "/admin/trials/pending/#{:id}", to: "trials#approve"
 end

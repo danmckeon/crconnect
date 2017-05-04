@@ -13,6 +13,8 @@ class TrialsController < ApplicationController
   end
 
   def approve
+
+    render :'admin/trials/show'
   end
 
   def update
