@@ -44,7 +44,7 @@ class CT101 extends React.Component {
       <div className="row">
         <div className="col-sm-1"/>
         <Col sm={10}>
-          <Panel header={panelTitle}>
+          <Panel header={panelTitle} bsStyle="primary" >
             <Tab.Container id="left-tabs-example" defaultActiveKey="first">
               <Row className="clearfix">
                 <Col sm={4}>

@@ -2,11 +2,26 @@
 
 h3.panel-title {
   font-size: 2em;
+  color: white;
 }
 
 p.mission-body {
   font-size: 1.5em;
 }
+
+.panel-default>.panel-heading.mission-heading {
+  background-color: #6FA85E;
+}
+
+.panel-mission {
+  border-color: #6FA85E;
+}
+
+.panel-default>.panel-heading.ct101-heading {
+  background-color: #337AB7;
+}
+
+
 
 #search-query-submit {
   margin-top: 10px;
