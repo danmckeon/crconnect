@@ -1,5 +1,4 @@
 class TrialsController < ApplicationController
-  helper :all
   def index
     trials = Trial.where(parse_params)
     trials = age_filter(trials, trial_params[:age])
@@ -11,7 +10,7 @@ class TrialsController < ApplicationController
   def pending
     if session[:user_id]
       @pending_trials = Trial.where(pending: true)
-      render :'admin/trials/pending'
+      render :'trials/pending'
     else
       redirect_to new_session_path
     end
@@ -20,10 +19,11 @@ class TrialsController < ApplicationController
   def approve
     @trial = Trial.find(params[:id])
 
-    render :'admin/trials/show'
+    render :'trials/approve'
   end
 
   def update
+    p params
   end
 
   private

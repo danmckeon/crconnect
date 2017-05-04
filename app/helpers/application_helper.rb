@@ -1,4 +1,5 @@
-module TrialHelper
+module ApplicationHelper
+  include TrialsHelper
 
   def parse_cancer_type(trial)
     case true
@@ -16,5 +17,10 @@ module TrialHelper
       "Colorectal Cancer (Other types)"
     else
       "(Please select type)"
+    end
+  end
+
+  def tester
+    "Colorectal Cancer (Other types)"
   end
 end
