@@ -7,6 +7,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
   let(:submission2) {FactoryGirl.create(:submission2)}
   let(:excited_submit) {FactoryGirl.create(:excited_submit)}
   let(:site) {FactoryGirl.build(:site)}
+  let(:site2) {FactoryGirl.build(:site2)}
 
   scenario "render results page on search submit" do
     grumpy_submit.sites << site
@@ -238,7 +239,6 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     fill_in('age', with: '50')
     fill_in('zipcode', with: '98117')
     click_on('Find Trials')
-    expect(page).to have_content("Phase III Randomized Trial Comparing Overall")
-    expect(page).to have_content("Study of the effects of the Phase on the status")
+    expect(page.text).to match(/Phase III Randomized Trial Comparing Overall.*Study of the effects of the Phase on the status/)
   end
 end
