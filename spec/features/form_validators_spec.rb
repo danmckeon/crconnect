@@ -57,4 +57,50 @@ RSpec.feature "Form Validators", type: :feature, js: true do
     click_on('Find Trials')
     expect(page).to have_content('Showing clinical trials for')
   end
+
+  scenario "show zip error when user leaves zip blank" do
+    visit('/')
+    page.driver.browser.switch_to.alert.accept
+    select('Colorectal Cancer (Other types)', from: 'cancerType')
+    select('Stage II', from: 'cancerStage')
+    select('No', from: 'chemotherapy')
+    select('No', from: 'radiation')
+    fill_in('age', with: '25')
+    click_on('Find Trials')
+    expect(page).to have_content('Please enter a valid zip code')
+  end
+
+  scenario "show zip error when user enters nonsensical string" do
+    visit('/')
+    page.driver.browser.switch_to.alert.accept
+    select('Colorectal Cancer (Other types)', from: 'cancerType')
+    select('Stage II', from: 'cancerStage')
+    select('No', from: 'chemotherapy')
+    select('No', from: 'radiation')
+    fill_in('age', with: '25')
+    fill_in('zipcode', with: 'sdfgnsdfgfdgdfsgfd')
+    click_on('Find Trials')
+    expect(page).to have_content('Please enter a valid zip code')
+  end
+
+  scenario "allow user to submit upon re-entering valid zip after zip error" do
+    visit('/')
+    page.driver.browser.switch_to.alert.accept
+    select('Colorectal Cancer (Other types)', from: 'cancerType')
+    select('Stage II', from: 'cancerStage')
+    select('No', from: 'chemotherapy')
+    select('No', from: 'radiation')
+    fill_in('age', with: '25')
+    fill_in('zipcode', with: 'sdfgnsdfgfdgdfsgfd')
+    click_on('Find Trials')
+    expect(page).to have_content('Please enter a valid zip code')
+    select('Colorectal Cancer (Other types)', from: 'cancerType')
+    select('Stage II', from: 'cancerStage')
+    select('No', from: 'chemotherapy')
+    select('No', from: 'radiation')
+    fill_in('age', with: '25')
+    fill_in('zipcode', with: '98117')
+    click_on('Find Trials')
+    expect(page).to have_content('Showing clinical trials for')
+  end
 end
