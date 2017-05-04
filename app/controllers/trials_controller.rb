@@ -99,17 +99,17 @@ class TrialsController < ApplicationController
 
   def zip_sort(trials, user_zip)
     user_coords = Geocoder::Calculations.extract_coordinates(user_zip)
-    trials_within_range = []
+    trial_sites_sorted = []
     trials.each do |trial|
+      trial_sites = []
       trial.sites.each do |site|
         site_coords = [site.latitude, site.longitude]
-        if !trials_within_range.include?(trial) && Geocoder::Calculations.distance_between(user_coords, site_coords) < 50
-          p Geocoder::Calculations.distance_between(user_coords, site_coords)
-          p site
-          trials_within_range << trial
-        end
+        site_distance = Geocoder::Calculations.distance_between(user_coords, site_coords)
+        trial_sites << {trial: trial, site: site, distance: site_distance}
       end
+      min_distance_trial_site = trial_sites.min_by { |site| site[:distance] }
+      trial_sites_sorted << min_distance_trial_site if min_distance_trial_site != nil
     end
-    trials_within_range
+    p trial_sites_sorted.sort_by { |trial_site| trial_site[:distance] }
   end
 end
