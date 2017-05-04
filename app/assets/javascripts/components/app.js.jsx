@@ -32,7 +32,7 @@ class App extends React.Component {
   render () {
     return(
       <div className="app">
-        <NavBar onClick={(e) => this.clickHandler(e)} />
+        <NavBar onClick={(e) => this.clickHandler(e)} id="top" />
         {(this.state.query) ? <Results query={this.state.query} zipHandler={(response) => this.handleZipError(response)}/> : <Search zipError={this.state.zipError} onSubmit={(query) => this.submitHandler(query)} />}
         <Footer />
       </div>

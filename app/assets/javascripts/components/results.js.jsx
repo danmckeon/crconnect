@@ -13,25 +13,26 @@ class Results extends React.Component {
       data: queryData,
     }).done((response) => {
       this.setState({trials: response});
+      window.location = '/#top';
     }).fail((response) => {
       this.props.zipHandler(response.responseJSON)
     });
   };
   render () {
     return(
-      <div className="container">
+      <div className="container" id="results-content">
         <div className="row">
           <div className="col-sm-1" />
         	<div className="col-sm-10">
-            <div className="panel panel-default">
-              <div className="panel-heading">
+            <div className="panel panel-default panel-search-results">
+              <div className="panel-heading search-results-heading">
                 <ResultsHeader query={this.props.query}/>
               </div>
 
               <div className="panel-body">
                 <TrialsList queryResults={this.state.trials}/>
               </div>
-              
+
             </div>
           </div>
           <div className="col-sm-1" />

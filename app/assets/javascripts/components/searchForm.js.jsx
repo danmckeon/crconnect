@@ -77,9 +77,9 @@ class SearchForm extends React.Component {
         <div className="col-sm-1">
         </div>
         <div className="search-form-container col-sm-10">
-          <div className="panel panel-default">
+          <div className="panel panel-default panel-search-results">
             <div id="jumpsearch"/>
-            <div className="panel-heading">
+            <div className="panel-heading search-results-heading">
               <div id="new-search"/>
               <h3 className="panel-title">
                 Search for Clinical Trials

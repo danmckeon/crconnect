@@ -5,8 +5,8 @@ class FDAProcess extends React.Component {
         <div className="col-sm-1" />
         <div className="col-sm-10">
           <div >
-          <div className="panel panel-default">
-            <div className="panel-heading">
+          <div className="panel panel-default panel-fdaprocess">
+            <div className="panel-heading fdaprocess-heading">
               <h3 className="panel-title">
                 The FDA Process
               </h3>
