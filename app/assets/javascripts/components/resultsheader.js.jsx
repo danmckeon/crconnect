@@ -23,7 +23,6 @@ class ResultsHeader extends React.Component {
   render () {
     return(
       <div>
-          {/* <span className="btn btn-default results-header-params long-string">{cancerType}</span> */}
           <span className="btn btn-default results-header-params">Stage: {this.props.query.cancerStage}</span>
           {this.checkCancerStatus()}
           {this.checkGeneticMarkers()}
