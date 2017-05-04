@@ -21,7 +21,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     fill_in('age', with: '25')
     fill_in('zipcode', with: '98117')
     click_on('Find Trials')
-    expect(page).to have_content('Showing clinical trials for')
+    expect(page).to have_content('clinical trials sorted by distance from you')
   end
 
   scenario "render some results when given good input" do
@@ -36,7 +36,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     fill_in('age', with: '16')
     fill_in('zipcode', with: '98117')
     click_on('Find Trials')
-    expect(page).to have_content('Showing clinical trials for')
+    expect(page).to have_content('clinical trials sorted by distance from you')
   end
 
   scenario "render the correct results when given good input" do
