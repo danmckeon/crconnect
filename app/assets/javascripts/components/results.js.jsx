@@ -1,4 +1,5 @@
 class Results extends React.Component {
+
   constructor() {
     super();
     this.state = {
@@ -13,7 +14,9 @@ class Results extends React.Component {
     }).done((response) => {
       this.setState({trials: response});
       window.location = '/#top';
-    })
+    }).fail((response) => {
+      this.props.zipHandler(response.responseJSON)
+    });
   };
   render () {
     return(
@@ -25,9 +28,11 @@ class Results extends React.Component {
               <div className="panel-heading search-results-heading">
                 <ResultsHeader query={this.props.query}/>
               </div>
+
               <div className="panel-body">
                 <TrialsList queryResults={this.state.trials}/>
               </div>
+
             </div>
           </div>
           <div className="col-sm-1" />

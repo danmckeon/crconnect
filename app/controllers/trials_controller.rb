@@ -1,20 +1,36 @@
 class TrialsController < ApplicationController
   def index
     trials = Trial.where(parse_params)
-    trials = age_filter(trials, trial_params[:age])
-    respond_to do |format|
-      format.json { render json: trials }
+    user_coords = Geocoder::Calculations.extract_coordinates(trial_params[:zipcode])
+    if user_coords[0].nan? || user_coords[1].nan?
+      respond_to do |format|
+        format.json { render json: {
+          zipError: 'Please enter a valid zip code'
+          }, status: 400}
+      end
+    else
+      trials = age_filter(trials, trial_params[:age])
+      trials = trials.uniq { |trial| trial.nct_id }
+      trials = zip_sort(trials, user_coords)
+      respond_to do |format|
+        format.json { render json: trials }
+      end
     end
   end
 
   def pending
-    @pending_trials = Trial.where(pending: true)
-    render :'admin/trials/pending'
+    if session[:user_id]
+      @pending_trials = Trial.where(pending: true)
+      render :'admin/trials/pending'
+    else
+      redirect_to new_session_path
+    end
   end
 
   private
   def trial_params
-    params.permit(:cancerType, :cancerSubType, :cancerStage, :cancerStatus, :geneticMarkers, :chemotherapy, :radiation, :age)
+    params.permit(:cancerType, :cancerSubType, :cancerStage, :cancerStatus,
+    :geneticMarkers, :chemotherapy, :radiation, :age, :zipcode)
   end
 
   def parse_params
@@ -92,5 +108,20 @@ class TrialsController < ApplicationController
       user = user_age.to_i
       min <= user && user < max
     end
+  end
+
+  def zip_sort(trials, user_coords)
+    trial_sites_sorted = []
+    trials.each do |trial|
+      trial_sites = []
+      trial.sites.each do |site|
+        site_coords = [site.latitude, site.longitude]
+        site_distance = Geocoder::Calculations.distance_between(user_coords, site_coords)
+        trial_sites << {trial: trial, site: site, distance: site_distance}
+      end
+      min_distance_trial_site = trial_sites.min_by { |site| site[:distance] }
+      trial_sites_sorted << min_distance_trial_site if min_distance_trial_site != nil
+    end
+    trial_sites_sorted.sort_by { |trial_site| trial_site[:distance] }
   end
 end

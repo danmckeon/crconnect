@@ -63,6 +63,14 @@ class SearchForm extends React.Component {
 
   }
 
+  componentWillMount() {
+    if (this.props.zipError) {
+      this.setState({
+        errors: this.props.zipError,
+      })
+    }
+  }
+
   render() {
     return (
       <div className="row">
@@ -144,4 +152,10 @@ class SearchForm extends React.Component {
       </div>
     )
   };
+  componentDidMount() {
+    if (this.props.zipError) {
+      window.location = '/#new-search'
+    }
+  }
+
 };
