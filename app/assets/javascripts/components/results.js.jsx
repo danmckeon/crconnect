@@ -1,4 +1,5 @@
 class Results extends React.Component {
+
   constructor() {
     super();
     this.state = {
@@ -26,9 +27,11 @@ class Results extends React.Component {
               <div className="panel-heading">
                 <ResultsHeader query={this.props.query}/>
               </div>
+
               <div className="panel-body">
                 <TrialsList queryResults={this.state.trials}/>
               </div>
+              
             </div>
           </div>
           <div className="col-sm-1" />

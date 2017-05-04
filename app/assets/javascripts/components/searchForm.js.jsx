@@ -56,11 +56,20 @@ class SearchForm extends React.Component {
     let queryString = $(e.target).serialize();
     let query = this.jsonifyQueryString(queryString);
     if (this.validateInput(query)) {
+      
       this.props.onSubmit(query);
     } else {
       return;
     };
 
+  }
+
+  componentWillMount() {
+    if (this.props.zipError) {
+      this.setState({
+        errors: this.props.zipError,
+      })
+    }
   }
 
   render() {
@@ -144,4 +153,10 @@ class SearchForm extends React.Component {
       </div>
     )
   };
+  componentDidMount() {
+    if (this.props.zipError) {
+      window.location = '/#new-search'
+    }
+  }
+
 };
