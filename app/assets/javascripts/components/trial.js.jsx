@@ -28,12 +28,13 @@ class Trial extends React.Component {
     const trial = this.props.trialSite.trial;
     const site = this.props.trialSite.site;
     const distance = this.props.trialSite.distance;
+    const truncatedTitle = trial.brief_title.substring(0, 100) + '...'
 
     return (
       <td>
         <div onClick={this._toggleDiv} className="trial-buttons" >
-          <a>Location: {site.name}</a><br />
-          <a>Trial: {trial.brief_title.substring(0, 100)}...</a>
+          <a>Location: {site.name}<br />
+          Trial: {truncatedTitle} </a>
         </div>
         <div className="trial-details" id={studyId}>
           <ul>
