@@ -101,7 +101,7 @@ class SearchForm extends React.Component {
                     <option value="Colorectal Cancer (Adenocarcinoma)">Colorectal Cancer (Adenocarcinoma)</option>
                     <option value="Colorectal Cancer (Other types)">Colorectal Cancer (Other types)</option>
                   </select>
-                  <label htmlFor="cancerStage">Stage</label>
+                  <label className="search-field-label" htmlFor="cancerStage">Stage</label>
                   <select name="cancerStage" className="form-control">
                     <option value="Blank">(Please select stage)</option>
                     <option value="Stage&nbsp;I">Stage I</option>
@@ -109,19 +109,19 @@ class SearchForm extends React.Component {
                     <option value="Stage&nbsp;III">Stage III</option>
                     <option value="Stage&nbsp;IV">Stage IV</option>
                   </select>
-                  <label htmlFor="chemotherapy">Have you received chemotherapy as a treatment?</label>
+                  <label className="search-field-label" htmlFor="chemotherapy">Have you received chemotherapy as a treatment?</label>
                   <select name="chemotherapy" className="form-control">
                     <option value="Blank">(Please select yes or no)</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                   </select>
-                  <label htmlFor="radiation">Have you received radiation as a treatment?</label>
+                  <label className="search-field-label" htmlFor="radiation">Have you received radiation as a treatment?</label>
                   <select name="radiation" className="form-control">
                     <option value="Blank">(Please select yes or no)</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                   </select>
-                  <label htmlFor="cancerStatus">What is the current status of your condition?</label>
+                  <label className="search-field-label" htmlFor="cancerStatus">What is the current status of your condition?</label>
                   <select name="cancerStatus" className="form-control">
                     <option>(Please select an option)</option>
                     <option value="Never&nbsp;Received&nbsp;Treatment">Never Received Treatment</option>
@@ -129,7 +129,7 @@ class SearchForm extends React.Component {
                     <option value="Refractory">Resistant to Treatment</option>
                   </select>
                   {/* Note: Consider checkbox input for genetic markers, and check controller logic. */}
-                  <label htmlFor="geneticMarkers">Select a relevant genetic marker you possess (leave blank if you aren't sure)</label>
+                  <label className="search-field-label" htmlFor="geneticMarkers">Select a relevant genetic marker you possess (leave blank if you aren't sure)</label>
                   <select name="geneticMarkers" className="form-control">
                     <option>(Please select an option)</option>
                     <option value="None">None</option>
@@ -137,11 +137,11 @@ class SearchForm extends React.Component {
                     <option value="EGFR&nbsp;Mutation">EGFR Mutation</option>
                     <option value="KRAS&nbsp;Mutation">KRAS Mutation</option>
                   </select>
-                  <label htmlFor="age">Age</label>
+                  <label className="search-field-label" htmlFor="age">Age</label>
                   <input type="text" name="age" className="form-control" />
-                  <label htmlFor="zipcode">Zipcode</label>
+                  <label className="search-field-label" htmlFor="zipcode">Zipcode</label>
                   <input type="text" name="zipcode" className="form-control" />
-                  <input type="submit" id="search-query-submit" className="form-control" value="Find Trials" />
+                  <input type="submit" id="search-query-submit" className="form-control search-form-submit" value="Find Trials" />
                 </div>
               </form>
             </div>
