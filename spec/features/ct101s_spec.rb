@@ -18,10 +18,10 @@ RSpec.feature "Clinical Trials 101", type: :feature, js: true do
     click_on("Are clinical trials safe?")
     expect(page).to have_content("You will be monitored very closely")
     click_on("What is informed consent?")
-    expect(page).to have_content("Signing the informed consent form acknowledges")
+    expect(page).to have_content("In addition, it is your right to withdraw at any point, even after granting consent.")
     click_on("Why participate in a clinical trial?")
     expect(page).to have_content("You may receive access to cutting edge")
     click_on("How do I participate in a clinical trial?")
-    expect(page).to have_content("consult your doctor to see if it is a good fit for you.")
+    expect(page).to have_content("consult your doctor to see if it is a good fit for you")
   end
 end
