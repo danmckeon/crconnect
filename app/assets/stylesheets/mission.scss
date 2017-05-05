@@ -58,6 +58,13 @@ p.mission-body {
   background-color: white;
 }
 
+.table-bordered>tbody>tr>td {
+  padding-top: 2%;
+  padding-bottom: 2%;
+  border-color: #E87D2B;
+  border-radius: 2px;
+}
+
 // CSS for FDA Process
 .panel-icon-container {
   padding: 7px;
@@ -69,17 +76,26 @@ p.mission-body {
     text-align: center;
   }
   .inner-fda-panel {
-    height: 100%;
+    height: 87%;
   }
+}
+
+.inner-fda-panel {
+  background-color: white;
+}
+
+.fda-panel {
+  text-align: center;
 }
 
 @media screen and (min-width: 1200px) {
   .fda-panel {
-        height: 315px;
-        text-align: center;
+    height: 360px;
+    text-align: center;
   }
   .inner-fda-panel {
-        vertical-align: middle;
+    height: 84%;
+    vertical-align: middle;
 
   }
 }
@@ -134,15 +150,34 @@ p.mission-body {
   margin-top: 80px;
 }
 
-// CSS for Form error alerts
 p.alert-danger {
   padding: 3px;
   margin: 7px auto;
   width: 330px;
 }
 
+.trial-buttons {
+  font-size: 120%;
+  cursor: pointer;
+  padding-left: 10px;
+}
+
 @media screen and (max-width: 450px) {
   p.alert-danger {
     width: 100%;
   }
+}
+
+.trial-details-list {
+  list-style-type: square;
+}
+
+.trial-details-bullets {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+// CSS for FDA Icons
+.fda-icons {
+  margin-top: 14px;
 }

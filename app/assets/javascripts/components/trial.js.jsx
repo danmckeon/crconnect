@@ -9,46 +9,47 @@ class Trial extends React.Component {
   }
 
   checkContact(site) {
-    const contactName = this.props.trialSite.trial.overall_contact_name;
-    const contactPhone = this.props.trialSite.trial.overall_contact_phone;
-    const contactEmail = this.props.trialSite.trial.overall_contact_email;
 
     if (site.contact_name) {
       return (
-        <li>
+        <li className="trial-details-bullets">
           Contact Info: <br/>
             {site.contact_name} <br/>
             {site.contact_phone} <br />
-            {site. contact_email}
+            {site.contact_email}
         </li>
       )
     }
   }
 
   render() {
-    const briefTitle = this.props.trialSite.trial.brief_title;
     const studyId = this.props.trialSite.trial.id;
-    const recruitingStatus = this.props.trialSite.trial.overall_status;
-    const site = this.props.trialSite.site
-    const distance = this.props.trialSite.distance
+    const recruitingStatus = this.props.trialSite.trial.overall_status;;
+    const trial = this.props.trialSite.trial;
+    const site = this.props.trialSite.site;
+    const distance = this.props.trialSite.distance;
+    const truncatedTitle = trial.brief_title.substring(0, 100) + '...'
 
     return (
-      <td>
-        <a onClick={this._toggleDiv} className="trial-buttons" >{briefTitle}</a>
+      <td className="trial-data">
+        <div onClick={this._toggleDiv} className="trial-buttons" >
+          <a><strong>Location:</strong> {site.name}<br /><br />
+          <strong>Trial:</strong> {truncatedTitle} </a>
+        </div>
         <div className="trial-details" id={studyId}>
-          <ul>
-            <li>
+          <ul className="trial-details-list">
+            <li className="trial-details-bullets">
               Currently {site.status}
             </li>
-            <li>
+            <li className="trial-details-bullets">
               Closest Clinical Trial Site ({distance.toFixed(2)} miles away): <br />
               {site.name} <br />
               {site.city}, {site.state} {site.zip}
             </li>
 
             {this.checkContact(site)}
-            <li>
-              <a href={`https://clinicaltrials.gov/ct2/show/${this.props.trialSite.trial.nct_id}`}>More info</a>
+            <li className="trial-details-bullets">
+              <a href={`https://clinicaltrials.gov/ct2/show/${this.props.trialSite.trial.nct_id}`} target="_blank">More info</a>
             </li>
           </ul>
         </div>
