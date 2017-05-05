@@ -33,7 +33,7 @@ class FDAProcess extends React.Component {
                   <div className="panel panel-default fda-panel">
                     <img src="shield.png" className="fda-icons"/>
                     <div className="panel-body inner-fda-panel">
-                      Each phase is strictly regulated and evaluated. Patient safety is a top priority. If there are any safety concerns, officials will halt the trial.
+                      Each phase is strictly regulated and evaluated. The entire process can take over ten years and clinical trial participants are an essential component. Patient safety is a top priority. If there are any safety concerns, officials will halt the trial.
                     </div>
                   </div>
                 </div>
@@ -41,7 +41,7 @@ class FDAProcess extends React.Component {
                   <div className="panel panel-default fda-panel">
                     <img src="pills.png" className="fda-icons"/>
                     <div className="panel-body inner-fda-panel">
-                      The FDA only approves a new cancer drug for sale after it has been shown to be safe and effective -- or more effective than existing treatments. Once approved, it becomes available for prescription. It can take over ten years to reach this point.
+                      The FDA only approves a new cancer drug for sale after it has been shown to be safe and effective -- or more effective than existing treatments. Once approved, it becomes available for prescription. This couldn't happen without clinical trial participants.
                     </div>
                   </div>
                 </div>

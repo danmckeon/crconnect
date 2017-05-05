@@ -109,7 +109,7 @@ class SearchForm extends React.Component {
                     <option value="Stage&nbsp;III">Stage III</option>
                     <option value="Stage&nbsp;IV">Stage IV</option>
                   </select>
-                  <label htmlFor="chemotherapy">Is chemotherapy your main form of treatment?</label>
+                  <label htmlFor="chemotherapy">Have you received chemotherapy as a treatment?</label>
                   <select name="chemotherapy" className="form-control">
                     <option value="Blank">(Please select yes or no)</option>
                     <option value="Yes">Yes</option>
@@ -121,12 +121,12 @@ class SearchForm extends React.Component {
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                   </select>
-                  <label htmlFor="cancerStatus">If you have received treatment, what is the current status of your condition?</label>
+                  <label htmlFor="cancerStatus">What is the current status of your condition?</label>
                   <select name="cancerStatus" className="form-control">
                     <option>(Please select an option)</option>
                     <option value="Never&nbsp;Received&nbsp;Treatment">Never Received Treatment</option>
                     <option value="Relapsed">Relapsed</option>
-                    <option value="Refractory">Refractory</option>
+                    <option value="Refractory">Resistant to Treatment</option>
                   </select>
                   {/* Note: Consider checkbox input for genetic markers, and check controller logic. */}
                   <label htmlFor="geneticMarkers">Select a relevant genetic marker you possess (leave blank if you aren't sure)</label>
