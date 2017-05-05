@@ -23,8 +23,6 @@ class ResultsHeader extends React.Component {
   render () {
     return(
       <div>
-        <h3>Showing clinical trials for:</h3>
-          <span className="btn btn-default results-header-params">Cancer Type: {this.props.query.cancerType}</span>
           <span className="btn btn-default results-header-params">Stage: {this.props.query.cancerStage}</span>
           {this.checkCancerStatus()}
           {this.checkGeneticMarkers()}

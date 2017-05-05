@@ -41,8 +41,21 @@ p.mission-body {
   background-color: #F5F5F5;
 }
 
+.results-title {
+  padding-bottom: 10px;
+}
+
 #search-query-submit {
   margin-top: 10px;
+}
+
+.results-header-params {
+  margin-right: 2px;
+  margin-bottom: 2px;
+}
+
+.trials-list-content {
+  background-color: white;
 }
 
 // CSS for FDA Process
@@ -107,12 +120,10 @@ p.mission-body {
   }
 }
 
-// CSS for Pending Trials
 .pending-trials {
   margin-top: 80px;
 }
 
-// CSS for Form error alerts
 p.alert-danger {
   padding: 3px;
   margin: 7px auto;
@@ -121,4 +132,9 @@ p.alert-danger {
 
 .trial-buttons {
   font-size: 120%;
+
+@media screen and (max-width: 450px) {
+  p.alert-danger {
+    width: 100%;
+  }
 }
