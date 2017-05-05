@@ -58,6 +58,13 @@ p.mission-body {
   background-color: white;
 }
 
+.table-bordered>tbody>tr>td {
+  padding-top: 2%;
+  padding-bottom: 2%;
+  border-color: #E87D2B;
+  border-radius: 2px;
+}
+
 // CSS for FDA Process
 .panel-icon-container {
   padding: 7px;
@@ -139,4 +146,13 @@ p.alert-danger {
   p.alert-danger {
     width: 100%;
   }
+}
+
+.trial-details-list {
+  list-style-type: square;
+}
+
+.trial-details-bullets {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
