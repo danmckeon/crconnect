@@ -1,23 +1,15 @@
-div.navbar-header {
-
-}
-
 button#search-button {
-  margin-right: 5%;
-  margin-left: 0;
   float: right;
-  vertical-align: middle;
+  margin: 18px;
 }
 
 #top-logo {
   width: 150px;
   display: inline-block;
+  margin: 16px;
 }
 
 .navbar-fixed-top {
-  min-height: 90px;
+	height: 90px;
 }
 
-.navbar-brand {
-  margin-bottom: 1.5%;
-}
