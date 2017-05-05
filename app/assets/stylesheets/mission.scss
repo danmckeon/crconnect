@@ -76,17 +76,26 @@ p.mission-body {
     text-align: center;
   }
   .inner-fda-panel {
-    height: 100%;
+    height: 87%;
   }
+}
+
+.inner-fda-panel {
+  background-color: white;
+}
+
+.fda-panel {
+  text-align: center;
 }
 
 @media screen and (min-width: 1200px) {
   .fda-panel {
-        height: 315px;
-        text-align: center;
+    height: 360px;
+    text-align: center;
   }
   .inner-fda-panel {
-        vertical-align: middle;
+    height: 84%;
+    vertical-align: middle;
 
   }
 }
@@ -156,4 +165,8 @@ p.alert-danger {
 .trial-details-bullets {
   margin-top: 5px;
   margin-bottom: 5px;
+
+// CSS for FDA Icons
+.fda-icons {
+  margin-top: 14px;
 }
