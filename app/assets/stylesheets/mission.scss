@@ -58,6 +58,13 @@ p.mission-body {
   background-color: white;
 }
 
+.table-bordered>tbody>tr>td {
+  padding-top: 2%;
+  padding-bottom: 2%;
+  border-color: #E87D2B;
+  border-radius: 2px;
+}
+
 // CSS for FDA Process
 .panel-icon-container {
   padding: 7px;
@@ -129,22 +136,35 @@ p.mission-body {
   }
 }
 
-// CSS for Pending Trials
 .pending-trials {
   margin-top: 80px;
 }
 
-// CSS for Form error alerts
 p.alert-danger {
   padding: 3px;
   margin: 7px auto;
   width: 330px;
 }
 
+.trial-buttons {
+  font-size: 120%;
+  cursor: pointer;
+  padding-left: 10px;
+}
+
 @media screen and (max-width: 450px) {
   p.alert-danger {
     width: 100%;
   }
+}
+
+.trial-details-list {
+  list-style-type: square;
+}
+
+.trial-details-bullets {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 // CSS for FDA Icons
