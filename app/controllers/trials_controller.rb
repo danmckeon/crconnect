@@ -1,3 +1,6 @@
+require 'net/http'
+require 'json'
+
 class TrialsController < ApplicationController
   def index
     trials = Trial.where(parse_params)
@@ -108,6 +111,10 @@ class TrialsController < ApplicationController
       user = user_age.to_i
       min <= user && user < max
     end
+  end
+
+  def find_lat_long(user_zip_input)
+
   end
 
   def zip_sort(trials, user_coords)
