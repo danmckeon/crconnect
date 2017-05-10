@@ -5,18 +5,18 @@ class TrialsController < ApplicationController
   def index
     trials = Trial.where(parse_params)
     user_coords = find_lat_long(trial_params[:zipcode])
-    if user_coords.empty?
-      respond_to do |format|
-        format.json { render json: {
-          zipError: 'Please enter a valid zip code'
-          }, status: 400}
-      end
-    else
+    if user_coords
       trials = age_filter(trials, trial_params[:age])
       trials = trials.uniq { |trial| trial.nct_id }
       trials = zip_sort(trials, user_coords)
       respond_to do |format|
         format.json { render json: trials }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: {
+          zipError: 'Please enter a valid zip code'
+          }, status: 400}
       end
     end
   end
@@ -117,7 +117,7 @@ class TrialsController < ApplicationController
     uri = URI("https://maps.googleapis.com/maps/api/geocode/json?address=#{user_zip_input}&key=#{ENV['GMAPS_API_KEY']}")
     location_components = JSON.parse(Net::HTTP.get(uri))
     if location_components["results"].empty?
-      return []
+      return nil
     else
       lat = location_components["results"][0]["geometry"]["location"]["lat"]
       long = location_components["results"][0]["geometry"]["location"]["lng"]
