@@ -1,19 +1,22 @@
+require 'net/http'
+require 'json'
+
 class TrialsController < ApplicationController
   def index
     trials = Trial.where(parse_params)
-    user_coords = Geocoder::Calculations.extract_coordinates(trial_params[:zipcode])
-    if user_coords[0].nan? || user_coords[1].nan?
-      respond_to do |format|
-        format.json { render json: {
-          zipError: 'Please enter a valid zip code'
-          }, status: 400}
-      end
-    else
+    user_coords = find_lat_long(trial_params[:zipcode])
+    if user_coords
       trials = age_filter(trials, trial_params[:age])
       trials = trials.uniq { |trial| trial.nct_id }
       trials = zip_sort(trials, user_coords)
       respond_to do |format|
         format.json { render json: trials }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: {
+          zipError: 'Please enter a valid zip code'
+          }, status: 400}
       end
     end
   end
@@ -107,6 +110,18 @@ class TrialsController < ApplicationController
       max = trial[:maximum_age].to_i
       user = user_age.to_i
       min <= user && user < max
+    end
+  end
+
+  def find_lat_long(user_zip_input)
+    uri = URI("https://maps.googleapis.com/maps/api/geocode/json?address=#{user_zip_input}&key=#{ENV['GMAPS_API_KEY']}")
+    location_components = JSON.parse(Net::HTTP.get(uri))
+    if location_components["results"].empty?
+      return nil
+    else
+      lat = location_components["results"][0]["geometry"]["location"]["lat"]
+      long = location_components["results"][0]["geometry"]["location"]["lng"]
+      [lat, long]
     end
   end
 
