@@ -14,7 +14,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     site.save
     visit('/')
     page.driver.browser.switch_to.alert.accept
-    select('Small Cell Lung Cancer', from: 'cancerType')
+    select('Non-Small Cell Lung Cancer (Squamous)', from: 'cancerType')
     select('Stage II', from: 'cancerStage')
     select('No', from: 'chemotherapy')
     select('No', from: 'radiation')
@@ -76,7 +76,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     site.save
     visit('/')
     page.driver.browser.switch_to.alert.accept
-    select('Small Cell Lung Cancer', from: 'cancerType')
+    select('Non-Small Cell Lung Cancer (Squamous)', from: 'cancerType')
     select('Stage III', from: 'cancerStage')
     select('No', from: 'chemotherapy')
     select('No', from: 'radiation')
@@ -92,7 +92,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     site.save
     visit('/')
     page.driver.browser.switch_to.alert.accept
-    select('Small Cell Lung Cancer', from: 'cancerType')
+    select('Non-Small Cell Lung Cancer (Squamous)', from: 'cancerType')
     select('Stage III', from: 'cancerStage')
     select('No', from: 'chemotherapy')
     select('No', from: 'radiation')
@@ -108,7 +108,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     site.save
     visit('/')
     page.driver.browser.switch_to.alert.accept
-    select('Small Cell Lung Cancer', from: 'cancerType')
+    select('Non-Small Cell Lung Cancer (Squamous)', from: 'cancerType')
     select('Stage III', from: 'cancerStage')
     select('No', from: 'chemotherapy')
     select('No', from: 'radiation')
@@ -124,7 +124,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     site.save
     visit('/')
     page.driver.browser.switch_to.alert.accept
-    select('Small Cell Lung Cancer', from: 'cancerType')
+    select('Non-Small Cell Lung Cancer (Squamous)', from: 'cancerType')
     select('Stage III', from: 'cancerStage')
     select('No', from: 'chemotherapy')
     select('No', from: 'radiation')
@@ -140,7 +140,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     site.save
     visit('/')
     page.driver.browser.switch_to.alert.accept
-    select('Small Cell Lung Cancer', from: 'cancerType')
+    select('Non-Small Cell Lung Cancer (Squamous)', from: 'cancerType')
     select('Stage III', from: 'cancerStage')
     select('No', from: 'chemotherapy')
     select('No', from: 'radiation')
@@ -231,7 +231,7 @@ RSpec.feature "SubmitSearches", type: :feature, js: true do
     site2.save
     visit('/')
     page.driver.browser.switch_to.alert.accept
-    select('Small Cell Lung Cancer', from: 'cancerType')
+    select('Non-Small Cell Lung Cancer (Squamous)', from: 'cancerType')
     select('Stage III', from: 'cancerStage')
     select('No', from: 'chemotherapy')
     select('No', from: 'radiation')

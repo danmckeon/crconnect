@@ -96,7 +96,8 @@ class SearchForm extends React.Component {
                     <option value="Non-Small Cell Lung Cancer (Adenocarcinoma)">Non-Small Cell Lung Cancer (Adenocarcinoma)</option>
                     <option value="Non-Small Cell Lung Cancer (Large Cell)">Non-Small Cell Lung Cancer (Large Cell)</option>
                     <option value="Non-Small Cell Lung Cancer (Squamous)">Non-Small Cell Lung Cancer (Squamous)</option>
-                    <option value="Small Cell Lung Cancer">Small Cell Lung Cancer</option>
+                    {/* Add SCLC back in once staging (LS/ES) implemented
+                    <option value="Small Cell Lung Cancer">Small Cell Lung Cancer</option> */}
                     <option disabled="disabled" value="Colorectal&nbsp;Cancer">-------------------Colorectal------------------</option>
                     <option value="Colorectal Cancer (Adenocarcinoma)">Colorectal Cancer (Adenocarcinoma)</option>
                     <option value="Colorectal Cancer (Other types)">Colorectal Cancer (Other types)</option>
