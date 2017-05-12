@@ -8,7 +8,7 @@
 
 ## Description
 
-CRConnect is short for Cancer Research Connect. Our mission is to connect patients with research and provide information on clinical trials for anyone diagnosed with cancer. For this initial sprint, we focused on lung cancer in particular since it affects so many people. To do this, we scrape the publicly available government filings for clinical trials, but make them searchable in a way that makes sense for the average person.
+Clinical trials have a participant satisfaction rate of more than 90%, yet less than 5% of cancer patients participate. Not enough patients (and doctors) know what trials are available to them. Patients need more options. Researchers need more participants. CRC connects these two groups by making information on clinical trials much easier to find. To do so, we scrape publicly available government filings for clinical trials and make them easily searchable for the average person. Our current application includes both lung and colorectal cancer trials, but we plan to extend to other types in the coming months.
 
 ## How to Install Locally
 
@@ -21,7 +21,7 @@ CRConnect is short for Cancer Research Connect. Our mission is to connect patien
 
 ## How to Use the App
 
-* CRConnect is deployed at: https://crconnect.herokuapp.com/
+* CRConnect is deployed at: https://crconnect.org/
 * Use the search form at bottom of home page to find clinical trials matching a particular condition
 
 ## Disclaimer
